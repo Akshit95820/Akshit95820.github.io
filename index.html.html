@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akshit Devadevan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bangers&family=Noto+Sans+JP:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0a0a0f;
+  --paper: #f5f0e8;
+  --paper2: #ede8d8;
+  --red: #e8162a;
+  --red2: #ff3347;
+  --yellow: #ffd60a;
+  --blue: #0d3bff;
+  --cyan: #00d4ff;
+  --white: #ffffff;
+  --grey: #1a1a2e;
+  --font-title: 'Bangers', cursive;
+  --font-impact: 'Bebas Neue', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR (tous sauf mobile) ── */
+* { cursor: none !important; }
+@media (max-width: 768px) {
+  #cursor, #cursor-dot { display: none !important; }
+  * { cursor: auto !important; }
+}
+#cursor {
+  position: fixed; z-index: 99999; pointer-events: none;
+  width: 22px; height: 22px;
+  border: 3px solid #e8162a;
+  background: rgba(232,22,42,0.2);
+  border-radius: 0;
+  top: -100px; left: -100px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: width .15s ease, height .15s ease, background .15s ease;
+}
+#cursor.on-link {
+  width: 38px; height: 38px;
+  background: rgba(232,22,42,0.35);
+  border-color: #ffd60a;
+}
+#cursor-dot {
+  position: fixed; z-index: 99999; pointer-events: none;
+  width: 7px; height: 7px;
+  background: #ffd60a;
+  border-radius: 0;
+  top: -100px; left: -100px;
+  transform: translate(-50%, -50%);
+}
+
+/* ── GLOBAL MANGA PANEL BORDER ── */
+.panel {
+  border: 3px solid var(--ink);
+  position: relative;
+}
+.panel-dark {
+  background: var(--ink);
+  border: 3px solid var(--paper);
+}
+
+/* ── SPEED LINES SVG BG ── */
+.speed-bg {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 56px;
+  background: var(--ink);
+  border-bottom: 3px solid var(--paper);
+}
+.nav-brand {
+  font-family: var(--font-title); font-size: 26px; letter-spacing: 2px;
+  color: var(--white); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-brand span { color: var(--red); }
+.nav-chapter { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.nav-links { display: flex; gap: 0; }
+.nav-links a {
+  font-family: var(--font-impact); font-size: 15px; letter-spacing: 1px;
+  color: var(--paper); text-decoration: none;
+  padding: 6px 18px; border-left: 2px solid rgba(255,255,255,0.1);
+  transition: background .15s, color .15s;
+}
+.nav-links a:hover { background: var(--red); color: var(--white); }
+.nav-icons { display: flex; gap: 8px; }
+.nav-icon {
+  width: 36px; height: 36px;
+  border: 2px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; color: var(--paper);
+  transition: all .15s; font-size: 15px;
+}
+.nav-icon:hover { border-color: var(--yellow); color: var(--yellow); transform: rotate(15deg); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
+  padding-top: 56px;
+  position: relative;
+}
+
+/* PANEL 1: big name panel top-left */
+.hero-p1 {
+  grid-column: 1; grid-row: 1 / 3;
+  background: var(--paper);
+  border-right: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+  padding: 48px 40px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.hero-p1-bg {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+.hero-p1-bg svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.06; }
+.status-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 11px; color: var(--red);
+  border: 2px solid var(--red); padding: 4px 12px;
+  margin-bottom: 20px; width: fit-content;
+  animation: blink-border 2s step-end infinite;
+}
+@keyframes blink-border { 50% { border-color: transparent; } }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: pulse 1.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.7} }
+
+.hero-name {
+  font-family: var(--font-title); font-size: clamp(64px, 10vw, 110px);
+  color: var(--ink); line-height: .9; letter-spacing: 2px;
+  margin-bottom: 12px;
+  position: relative; z-index: 1;
+  animation: smash-in .6s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes smash-in {
+  from { transform: scale(2) skewX(-10deg); opacity: 0; }
+  to { transform: scale(1) skewX(0); opacity: 1; }
+}
+.hero-name .name-line2 { color: var(--red); display: block; }
+.hero-furigana { font-family: var(--font-mono); font-size: 10px; color: rgba(10,10,15,0.5); letter-spacing: 4px; margin-bottom: 8px; }
+.hero-desc {
+  font-size: 14px; color: rgba(10,10,15,0.7); line-height: 1.7; max-width: 340px;
+  position: relative; z-index: 1; margin-bottom: 24px;
+  border-left: 3px solid var(--red); padding-left: 14px;
+}
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; position: relative; z-index: 1; }
+.btn-manga-primary {
+  font-family: var(--font-impact); font-size: 16px; letter-spacing: 2px;
+  padding: 12px 28px;
+  background: var(--red); color: var(--white); border: 3px solid var(--ink);
+  text-decoration: none; cursor: none;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform .1s, box-shadow .1s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-manga-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+.btn-manga-secondary {
+  font-family: var(--font-impact); font-size: 16px; letter-spacing: 2px;
+  padding: 12px 28px;
+  background: transparent; color: var(--ink); border: 3px solid var(--ink);
+  text-decoration: none; cursor: none;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform .1s, box-shadow .1s;
+}
+.btn-manga-secondary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); background: var(--yellow); }
+.hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; position: relative; z-index: 1; }
+.hero-tag-chip {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px;
+  padding: 4px 10px; border: 2px solid var(--ink); background: var(--yellow); color: var(--ink);
+  font-weight: 700;
+}
+
+/* PANEL 2: profile card top-right */
+.hero-p2 {
+  grid-column: 2; grid-row: 1;
+  background: var(--ink);
+  border-bottom: 3px solid var(--paper);
+  padding: 32px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.hp2-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.hp2-chapter { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 3px; }
+.hp2-avatar {
+  width: 56px; height: 56px;
+  background: var(--red);
+  border: 3px solid var(--paper);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-title); font-size: 22px; color: var(--white);
+  position: relative;
+}
+.hp2-avatar::after {
+  content: ''; position: absolute; inset: 3px;
+  border: 1px dashed rgba(255,255,255,0.3);
+}
+.hp2-title { font-family: var(--font-title); font-size: 28px; color: var(--white); margin: 16px 0 20px; letter-spacing: 1px; line-height: 1.1; }
+.hp2-title span { color: var(--cyan); }
+.hp2-rows { display: flex; flex-direction: column; gap: 8px; }
+.hp2-row {
+  border: 1px solid rgba(255,255,255,0.12); padding: 10px 14px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.hp2-row-label { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 2px; }
+.hp2-row-val { font-size: 13px; font-weight: 700; }
+.hp2-row-val.green { color: #4ade80; }
+.hp2-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.hp2-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border: 2px solid rgba(255,255,255,0.15);
+  color: var(--paper); text-decoration: none; font-size: 13px; font-weight: 700;
+  transition: all .15s;
+}
+.hp2-link:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* PANEL 3: bottom-right quote panel */
+.hero-p3 {
+  grid-column: 2; grid-row: 2;
+  background: var(--red);
+  padding: 28px 32px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hero-p3 .sfx {
+  font-family: var(--font-title); font-size: 80px; color: rgba(255,255,255,0.08);
+  position: absolute; right: -10px; bottom: -20px; line-height: 1;
+  letter-spacing: -2px; user-select: none;
+}
+.hero-p3-quote {
+  font-family: var(--font-title); font-size: 22px; color: var(--white);
+  line-height: 1.3; letter-spacing: 1px; position: relative; z-index: 1;
+  margin-bottom: 12px;
+}
+.hero-p3-sub { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; position: relative; z-index: 1; }
+
+/* ── SECTION SEPARATOR ── */
+.section-break {
+  background: var(--paper);
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+  padding: 10px 32px;
+  display: flex; align-items: center; gap: 24px; overflow: hidden;
+}
+.section-break-num {
+  font-family: var(--font-title); font-size: 40px; color: var(--red); flex-shrink: 0;
+}
+.section-break-title {
+  font-family: var(--font-impact); font-size: 22px; color: var(--ink); letter-spacing: 3px;
+}
+.section-break-line { flex: 1; height: 2px; background: var(--ink); }
+.section-break-jp { font-family: var(--font-mono); font-size: 11px; color: rgba(10,10,15,0.4); letter-spacing: 2px; }
+
+/* ── ABOUT ── */
+#about {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; min-height: 70vh;
+}
+.about-left {
+  background: var(--paper); padding: 56px 48px;
+  border-right: 4px solid var(--ink);
+  position: relative; overflow: hidden;
+}
+.about-left-bg svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .04; pointer-events: none; }
+.section-tag-manga {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 4px;
+  color: var(--red); margin-bottom: 12px; display: block;
+  text-transform: uppercase;
+}
+.about-title {
+  font-family: var(--font-title); font-size: clamp(36px, 4vw, 52px);
+  color: var(--ink); line-height: 1.05; letter-spacing: 1px; margin-bottom: 24px;
+}
+.about-title em { font-style: normal; color: var(--red); }
+.about-body { font-size: 14px; color: rgba(10,10,15,0.75); line-height: 1.8; margin-bottom: 20px; }
+.about-callout {
+  background: var(--ink); color: var(--paper); padding: 18px 22px;
+  border-left: 5px solid var(--yellow); margin-bottom: 20px;
+  font-size: 13px; line-height: 1.7; font-style: italic;
+}
+.about-callout strong { color: var(--yellow); font-style: normal; }
+
+.about-right {
+  background: var(--grey); padding: 48px 40px;
+  display: flex; flex-direction: column; gap: 16px;
+  border-top: none;
+}
+.about-card-manga {
+  border: 2px solid rgba(255,255,255,0.12); padding: 22px;
+  position: relative; overflow: hidden;
+  transition: border-color .2s;
+}
+.about-card-manga:hover { border-color: var(--cyan); }
+.about-card-manga::before {
+  content: attr(data-sfx);
+  position: absolute; right: 12px; bottom: -8px;
+  font-family: var(--font-title); font-size: 48px;
+  color: rgba(255,255,255,0.04); letter-spacing: -1px; user-select: none;
+}
+.acm-label { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 3px; margin-bottom: 8px; }
+.acm-title { font-family: var(--font-title); font-size: 22px; color: var(--white); margin-bottom: 10px; letter-spacing: 1px; line-height: 1.2; }
+.acm-body { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 14px; }
+.acm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.acm-mini {
+  border: 1px solid rgba(255,255,255,0.1); padding: 10px 12px;
+  font-size: 12px;
+}
+.acm-mini-label { color: rgba(255,255,255,0.35); font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px; margin-bottom: 3px; }
+.acm-mini-val { font-weight: 700; font-size: 13px; }
+.badge-alt { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; padding: 3px 10px; border: 1px solid var(--cyan); color: var(--cyan); }
+
+/* ── SKILLS ── */
+#skills { background: var(--paper); }
+.skills-header {
+  padding: 56px 48px 36px;
+  border-bottom: 4px solid var(--ink);
+}
+.skills-big-title {
+  font-family: var(--font-title); font-size: clamp(40px, 6vw, 72px);
+  color: var(--ink); line-height: 1; letter-spacing: 2px; margin-bottom: 8px;
+}
+.skills-big-title span { color: var(--red); }
+.skills-sub { font-size: 14px; color: rgba(10,10,15,0.6); margin-top: 10px; }
+
+/* SKILLS MAIN GRID: comic panels layout */
+.skills-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  border-bottom: 4px solid var(--ink);
+}
+.skill-panel {
+  border-right: 3px solid var(--ink);
+  padding: 32px 28px;
+  position: relative; overflow: hidden;
+  background: var(--paper);
+  transition: background .2s;
+}
+.skill-panel:last-child { border-right: none; }
+.skill-panel:hover { background: var(--ink); }
+.skill-panel:hover .sp-name { color: var(--white); }
+.skill-panel:hover .sp-title { color: var(--white); }
+.skill-panel:hover .sp-bullet { color: rgba(255,255,255,0.65); }
+.skill-panel:hover .sp-bullet::before { background: var(--red); }
+.skill-panel:hover .sp-icon { border-color: var(--paper); color: var(--paper); }
+.sp-number {
+  font-family: var(--font-title); font-size: 80px; color: rgba(10,10,15,0.06);
+  position: absolute; right: -4px; top: -16px; line-height: 1; user-select: none;
+  transition: color .2s;
+}
+.skill-panel:hover .sp-number { color: rgba(255,255,255,0.05); }
+.sp-icon {
+  width: 44px; height: 44px; border: 3px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-impact); font-size: 16px; color: var(--ink);
+  margin-bottom: 16px; transition: all .2s; position: relative; z-index: 1;
+}
+.sp-name { font-family: var(--font-mono); font-size: 11px; color: rgba(10,10,15,0.5); letter-spacing: 3px; margin-bottom: 8px; position: relative; z-index: 1; transition: color .2s; }
+.sp-title { font-family: var(--font-title); font-size: 20px; color: var(--ink); margin-bottom: 14px; line-height: 1.2; letter-spacing: .5px; position: relative; z-index: 1; transition: color .2s; }
+.sp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; position: relative; z-index: 1; }
+.sp-bullet {
+  font-size: 12.5px; color: rgba(10,10,15,0.65); line-height: 1.5;
+  padding-left: 16px; position: relative; transition: color .2s;
+}
+.sp-bullet::before { content: ''; position: absolute; left: 0; top: 7px; width: 6px; height: 2px; background: var(--red); transition: background .2s; }
+
+/* Skills coming soon row */
+.skills-coming-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  border-top: 3px solid var(--ink);
+}
+.skill-dim-panel {
+  border-right: 3px solid var(--ink); padding: 22px 28px;
+  background: rgba(10,10,15,0.04);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.skill-dim-panel:last-child { border-right: none; }
+.skill-dim-left { display: flex; align-items: center; gap: 12px; }
+.skill-dim-icon { font-size: 20px; }
+.skill-dim-name { font-family: var(--font-impact); font-size: 16px; color: rgba(10,10,15,0.5); letter-spacing: 1px; }
+.skill-dim-sub { font-size: 12px; color: rgba(10,10,15,0.35); margin-top: 1px; }
+.badge-coming { font-family: var(--font-mono); font-size: 10px; padding: 3px 9px; border: 1px solid rgba(230,160,30,0.5); color: #b45309; letter-spacing: 2px; }
+.badge-inprogress { font-family: var(--font-mono); font-size: 10px; padding: 3px 9px; border: 1px solid rgba(52,211,153,0.5); color: #059669; letter-spacing: 2px; }
+
+/* ── PROJECTS ── */
+#projects { background: var(--ink); }
+.projects-header {
+  padding: 56px 48px 36px;
+  border-bottom: 3px solid rgba(255,255,255,0.1);
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.projects-header-left {}
+.proj-big-title { font-family: var(--font-title); font-size: clamp(40px, 5vw, 68px); color: var(--white); line-height: 1; letter-spacing: 2px; margin-bottom: 8px; }
+.proj-big-title span { color: var(--yellow); }
+.proj-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 10px; }
+.search-manga {
+  display: flex; align-items: center; gap: 8px;
+  border: 2px solid rgba(255,255,255,0.15); padding: 10px 16px; min-width: 220px;
+  background: rgba(255,255,255,0.04);
+}
+.search-manga svg { width: 14px; height: 14px; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+.search-manga input { background: none; border: none; outline: none; font-size: 13px; color: var(--white); font-family: var(--font-mono); width: 100%; }
+.search-manga input::placeholder { color: rgba(255,255,255,0.25); }
+
+/* PROJECTS PANEL GRID: asymmetric */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: none;
+}
+.project-panel {
+  border-bottom: 3px solid rgba(255,255,255,0.1);
+  border-right: 3px solid rgba(255,255,255,0.1);
+  padding: 32px 36px;
+  position: relative; overflow: hidden; cursor: none;
+  transition: background .2s;
+}
+.project-panel:nth-child(even) { border-right: none; }
+.project-panel:hover { background: rgba(255,255,255,0.04); }
+.project-panel:hover .pp-action { opacity: 1; transform: translateX(0); }
+.pp-corner-num {
+  font-family: var(--font-title); font-size: 100px;
+  color: rgba(255,255,255,0.03); position: absolute;
+  right: -8px; bottom: -24px; line-height: 1; user-select: none;
+}
+.pp-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.pp-icon {
+  width: 40px; height: 40px; border: 2px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.pp-num-label { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 2px; }
+.pp-type { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 2px; margin-bottom: 8px; }
+.pp-title { font-family: var(--font-title); font-size: 30px; color: var(--white); margin-bottom: 10px; letter-spacing: 1px; line-height: 1.1; }
+.pp-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65; margin-bottom: 16px; }
+.pp-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.pp-tag {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px;
+  padding: 4px 10px; border: 1px solid rgba(255,214,10,0.3);
+  color: var(--yellow); background: rgba(255,214,10,0.06);
+}
+.pp-action {
+  position: absolute; right: 20px; bottom: 20px;
+  font-family: var(--font-impact); font-size: 13px; letter-spacing: 2px;
+  color: var(--red); opacity: 0; transform: translateX(10px);
+  transition: all .2s;
+}
+
+/* ── CONTACT ── */
+#contact {
+  display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh;
+}
+.contact-left {
+  background: var(--paper);
+  border-right: 4px solid var(--ink);
+  padding: 56px 48px;
+  position: relative; overflow: hidden;
+}
+.contact-left-bg svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .04; pointer-events: none; }
+.contact-big { font-family: var(--font-title); font-size: clamp(44px, 6vw, 80px); color: var(--ink); line-height: .95; letter-spacing: 2px; margin-bottom: 16px; }
+.contact-big .red { color: var(--red); }
+.contact-sub { font-size: 14px; color: rgba(10,10,15,0.6); margin-bottom: 36px; line-height: 1.6; }
+.contact-items { display: flex; flex-direction: column; gap: 10px; }
+.contact-item-manga {
+  display: flex; align-items: center; justify-content: space-between;
+  border: 2px solid var(--ink); padding: 15px 18px;
+  background: transparent; text-decoration: none; color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform .1s, box-shadow .1s, background .15s;
+}
+.contact-item-manga:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); background: var(--yellow); }
+.cim-left { display: flex; flex-direction: column; }
+.cim-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 3px; color: rgba(10,10,15,0.45); margin-bottom: 3px; }
+.cim-val { font-family: var(--font-impact); font-size: 17px; letter-spacing: 1px; }
+.cim-note { font-size: 11px; color: rgba(10,10,15,0.5); margin-top: 2px; }
+.cim-icon { width: 36px; height: 36px; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.contact-right {
+  background: var(--grey);
+  padding: 48px 40px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.cr-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+.cr-chapter { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 3px; }
+.cr-lang { font-family: var(--font-mono); font-size: 10px; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.4); padding: 3px 8px; }
+.cr-title { font-family: var(--font-title); font-size: 28px; color: var(--white); margin-bottom: 10px; line-height: 1.1; letter-spacing: 1px; }
+.cr-body { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 24px; }
+.cr-dispo { border: 1px solid rgba(255,255,255,0.12); padding: 14px 16px; margin-bottom: 24px; }
+.cr-dispo-label { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 3px; margin-bottom: 5px; }
+.cr-dispo-val { font-size: 14px; font-weight: 700; color: #4ade80; }
+.btn-scroll-manga {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-impact); font-size: 16px; letter-spacing: 2px;
+  padding: 12px 22px; border: 2px solid rgba(255,255,255,0.2);
+  color: var(--paper); background: transparent; text-decoration: none; cursor: none;
+  transition: all .15s;
+}
+.btn-scroll-manga:hover { border-color: var(--yellow); color: var(--yellow); }
+
+/* Vertical strip */
+.cr-strip { display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: .3; }
+.cr-strip span { font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; writing-mode: vertical-rl; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  border-top: 4px solid var(--paper);
+  padding: 24px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.foot-brand { font-family: var(--font-title); font-size: 22px; color: var(--white); letter-spacing: 1px; }
+.foot-brand span { color: var(--red); }
+.foot-sub { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 2px; margin-top: 3px; }
+.foot-links { display: flex; gap: 0; }
+.foot-links a {
+  font-family: var(--font-impact); font-size: 14px; letter-spacing: 1px;
+  color: rgba(255,255,255,0.5); text-decoration: none;
+  padding: 4px 16px; border-right: 1px solid rgba(255,255,255,0.1);
+  transition: color .15s;
+}
+.foot-links a:first-child { border-left: 1px solid rgba(255,255,255,0.1); }
+.foot-links a:hover { color: var(--yellow); }
+.foot-socials { display: flex; gap: 8px; }
+.foot-social {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px;
+  color: rgba(255,255,255,0.4); text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.12); padding: 6px 12px;
+  transition: all .15s;
+}
+.foot-social:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
+.foot-copy { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.2); text-align: center; padding: 12px 48px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--red); }
+::-webkit-scrollbar-thumb:hover { background: var(--red2); }
+
+/* ── HALFTONE OVERLAY ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 999; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* ── SFX floating text ── */
+.sfx-absolute {
+  font-family: var(--font-title); user-select: none; pointer-events: none;
+  position: absolute; line-height: 1;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  #hero { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
+  .hero-p1 { grid-column: 1; grid-row: 1; }
+  .hero-p2 { grid-column: 1; grid-row: 2; }
+  .hero-p3 { grid-column: 1; grid-row: 3; }
+  #about, #contact { grid-template-columns: 1fr; }
+  .about-right { border-top: 4px solid var(--ink); }
+  .skills-panels, .skills-coming-row, .projects-grid { grid-template-columns: 1fr; }
+  .skill-panel, .skill-dim-panel { border-right: none; border-bottom: 3px solid var(--ink); }
+  .project-panel { border-right: none; }
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+}
+
+/* ── PROJECT MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 3000;
+  background: rgba(0,0,0,0.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: #0a0a0f;
+  border: 3px solid #f5f0e8;
+  max-width: 860px; width: 92vw; max-height: 88vh;
+  display: flex; flex-direction: column;
+  transform: scale(0.93) translateY(18px);
+  transition: transform .3s cubic-bezier(0.22,1,0.36,1);
+  overflow: hidden;
+}
+.modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+.modal-header {
+  background: #f5f0e8; color: #0a0a0f;
+  padding: 14px 22px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 3px solid #0a0a0f; flex-shrink: 0;
+}
+.modal-header-left { display: flex; align-items: center; gap: 12px; }
+.modal-icon { font-size: 22px; }
+.modal-title { font-family: 'Bangers', cursive; font-size: 26px; letter-spacing: 1px; line-height: 1; }
+.modal-subtitle { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(10,10,15,0.5); letter-spacing: 2px; margin-top: 3px; }
+.modal-close {
+  width: 36px; height: 36px; border: 3px solid #0a0a0f;
+  background: #e8162a; color: #fff;
+  font-size: 18px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .15s; flex-shrink: 0;
+}
+.modal-close:hover { transform: rotate(90deg); background: #ff3347; }
+.modal-actions {
+  padding: 10px 22px; background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; align-items: center;
+}
+.modal-download {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px;
+  padding: 9px 20px; background: #ffd60a; color: #0a0a0f;
+  border: 3px solid #0a0a0f; text-decoration: none;
+  box-shadow: 3px 3px 0 #0a0a0f; transition: transform .1s, box-shadow .1s;
+}
+.modal-download:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #0a0a0f; }
+.modal-download svg { width: 15px; height: 15px; }
+.modal-file-info { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 1px; margin-left: auto; }
+.modal-code-wrap { overflow-y: auto; flex: 1; }
+.modal-code-wrap pre {
+  font-family: 'Share Tech Mono', monospace; font-size: 12.5px; line-height: 1.8;
+  color: rgba(245,240,232,0.85); padding: 20px 24px; white-space: pre; tab-size: 4;
+}
+.modal-code-wrap::-webkit-scrollbar { width: 5px; }
+.modal-code-wrap::-webkit-scrollbar-thumb { background: #e8162a; }
+.modal-gh-body {
+  padding: 40px 28px; display: flex; flex-direction: column;
+  align-items: center; gap: 18px; text-align: center;
+}
+.modal-gh-icon { font-size: 48px; }
+.modal-gh-title { font-family: 'Bangers', cursive; font-size: 32px; letter-spacing: 2px; color: #fff; }
+.modal-gh-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 460px; }
+.modal-gh-url { font-family: 'Share Tech Mono', monospace; font-size: 13px; color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); padding: 10px 18px; letter-spacing: 1px; }
+
+
+/* ── GAME MODALS ── */
+.game-wrap {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: #0d0d0d; padding: 20px; gap: 14px; overflow: auto;
+}
+.game-canvas-wrap { position: relative; }
+.game-canvas-wrap canvas {
+  display: block; border: 3px solid #e8162a;
+  image-rendering: pixelated;
+}
+.game-score {
+  font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: 3px;
+  color: #ffd60a;
+}
+.game-controls {
+  font-family: 'Share Tech Mono', monospace; font-size: 11px;
+  color: rgba(255,255,255,0.4); letter-spacing: 2px; text-align: center;
+}
+.game-btn {
+  font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px;
+  padding: 9px 22px; background: #e8162a; color: #fff;
+  border: 3px solid #f5f0e8; cursor: pointer;
+  box-shadow: 3px 3px 0 #f5f0e8; transition: transform .1s, box-shadow .1s;
+}
+.game-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #f5f0e8; }
+.game-btn.secondary { background: transparent; color: #f5f0e8; }
+.game-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.82);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px;
+}
+.game-overlay-title {
+  font-family: 'Bangers', cursive; font-size: 48px; letter-spacing: 3px; color: #e8162a;
+  text-shadow: 3px 3px 0 #000;
+}
+.game-overlay-sub {
+  font-family: 'Share Tech Mono', monospace; font-size: 13px;
+  color: rgba(255,255,255,0.6); letter-spacing: 2px;
+}
+
+/* ── MASTERMIND ── */
+.mm-board {
+  display: flex; flex-direction: column; gap: 6px;
+  background: #111; border: 2px solid rgba(255,255,255,0.1);
+  padding: 12px; border-radius: 4px; min-width: 320px;
+}
+.mm-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: nowrap;
+}
+.mm-pegs { display: flex; gap: 6px; }
+.mm-peg {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.2);
+  cursor: pointer; transition: transform .1s, border-color .15s;
+}
+.mm-peg:hover { transform: scale(1.1); border-color: #ffd60a; }
+.mm-peg.selected { border-color: #ffd60a; border-width: 3px; }
+.mm-feedback { display: flex; flex-wrap: wrap; gap: 3px; width: 34px; flex-shrink:0; }
+.mm-fb-peg { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); }
+.mm-colors { display: flex; gap: 8px; margin-top: 6px; }
+.mm-color-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 3px solid transparent; cursor: pointer;
+  transition: transform .1s, border-color .15s;
+}
+.mm-color-btn:hover { transform: scale(1.15); border-color: #ffd60a; }
+.mm-slot {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px dashed rgba(255,255,255,0.3); background: #1a1a1a;
+  transition: all .15s;
+}
+.mm-slot.filled { border-style: solid; border-color: rgba(255,255,255,0.5); }
+.mm-current-row { background: rgba(255,214,10,0.06); border-radius: 4px; }
+.mm-row-num {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px;
+  color: rgba(255,255,255,0.25); width: 18px; text-align: right;
+}
+.mm-game-area {
+  display: flex; gap: 20px; align-items: flex-start;
+  flex-wrap: wrap; justify-content: center;
+}
+.mm-side { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.mm-label {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px;
+  color: rgba(255,255,255,0.4); letter-spacing: 2px; text-align: center;
+}
+.mm-validate {
+  font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px;
+  padding: 8px 18px; background: #ffd60a; color: #0a0a0f;
+  border: 2px solid #0a0a0f; cursor: pointer;
+  box-shadow: 2px 2px 0 #0a0a0f; transition: all .1s;
+  width: 100%;
+}
+.mm-validate:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #0a0a0f; }
+.mm-validate:disabled { opacity: .4; cursor: not-allowed; transform: none; box-shadow: 2px 2px 0 #0a0a0f; }
+.mm-erase {
+  font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 2px;
+  padding: 6px 12px; background: transparent; color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.2); cursor: pointer; width: 100%;
+  transition: all .1s;
+}
+.mm-erase:hover { color: #e8162a; border-color: #e8162a; }
+
+.modal-gh-body {
+  padding: 40px 28px; display: flex; flex-direction: column;
+  align-items: center; gap: 18px; text-align: center;
+}
+.modal-file-info { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 1px; margin-left: auto; }
+
+
+/* ══════════════════════════════════════
+   MOBILE OPTIMIZATIONS (max-width: 768px)
+   ══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav { padding: 0 16px; height: 52px; }
+  .nav-brand { font-size: 20px; }
+  .nav-brand-sub { display: none; }
+  .nav-links { display: none; }
+  .nav-icons { gap: 6px; }
+  .nav-icon { width: 34px; height: 34px; font-size: 14px; }
+
+  /* HERO — une seule colonne, contenu aéré */
+  #hero {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto auto !important;
+    padding: 72px 20px 32px;
+    gap: 0;
+    min-height: auto;
+  }
+  .hero-p1 {
+    grid-column: 1 !important; grid-row: 1 !important;
+    border-right: none !important;
+    border-bottom: 3px solid var(--ink) !important;
+    padding: 32px 24px !important;
+  }
+  .hero-name { font-size: 52px !important; }
+  .hero-desc { font-size: 14px; max-width: 100%; }
+  .hero-btns { flex-direction: column; gap: 10px; }
+  .btn-manga-primary, .btn-manga-secondary { width: 100%; justify-content: center; text-align: center; font-size: 15px; padding: 14px 20px; }
+  .hero-p1-bg svg { opacity: 0.03; }
+
+  .hero-p2 {
+    grid-column: 1 !important; grid-row: 2 !important;
+    padding: 24px !important;
+    border-bottom: 3px solid var(--paper) !important;
+  }
+  .hp2-title { font-size: 22px; margin-bottom: 14px; }
+  .hc-grid { grid-template-columns: 1fr !important; }
+
+  .hero-p3 {
+    grid-column: 1 !important; grid-row: 3 !important;
+    padding: 24px !important;
+  }
+  .hero-p3-quote { font-size: 18px; }
+  .hero-p3 .sfx { font-size: 50px; }
+
+  /* SECTION BREAKS */
+  .section-break { padding: 8px 16px; gap: 14px; }
+  .section-break-num { font-size: 28px; }
+  .section-break-title { font-size: 16px; letter-spacing: 2px; }
+  .section-break-jp { font-size: 10px; }
+
+  /* ABOUT */
+  #about {
+    grid-template-columns: 1fr !important;
+  }
+  .about-left {
+    border-right: none !important;
+    border-bottom: 4px solid var(--ink) !important;
+    padding: 32px 24px !important;
+  }
+  .about-title { font-size: 28px !important; }
+  .about-right { padding: 28px 24px !important; }
+  .acm-grid { grid-template-columns: 1fr 1fr !important; }
+  .acm-title { font-size: 18px; }
+
+  /* SKILLS */
+  .skills-header { padding: 36px 20px 24px !important; }
+  .skills-big-title { font-size: 32px !important; }
+  .skills-panels {
+    grid-template-columns: 1fr !important;
+  }
+  .skill-panel {
+    border-right: none !important;
+    border-bottom: 3px solid var(--ink) !important;
+    padding: 24px 20px !important;
+  }
+  .skill-panel:last-child { border-bottom: 3px solid var(--ink) !important; }
+  .skills-coming-row {
+    grid-template-columns: 1fr !important;
+  }
+  .skill-dim-panel {
+    border-right: none !important;
+    border-bottom: 3px solid rgba(10,10,15,0.1) !important;
+    padding: 16px 20px !important;
+  }
+
+  /* PROJECTS */
+  .projects-header {
+    padding: 36px 20px 24px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+  }
+  .proj-big-title { font-size: 36px !important; }
+  .search-manga { width: 100% !important; min-width: unset !important; }
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .project-panel {
+    border-right: none !important;
+    padding: 24px 20px !important;
+  }
+  .pp-title { font-size: 24px !important; }
+  .pp-corner-num { font-size: 60px !important; }
+
+  /* CONTACT */
+  #contact {
+    grid-template-columns: 1fr !important;
+  }
+  .contact-left {
+    border-right: none !important;
+    border-bottom: 4px solid var(--ink) !important;
+    padding: 36px 24px !important;
+  }
+  .contact-big { font-size: 48px !important; }
+  .contact-grid-2 { grid-template-columns: 1fr !important; }
+  .contact-right { padding: 32px 24px !important; }
+  .cr-title { font-size: 20px; }
+
+  /* FOOTER */
+  footer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 20px 20px !important;
+    gap: 12px !important;
+  }
+  .foot-links { flex-wrap: wrap; gap: 0; }
+  .foot-socials { flex-wrap: wrap; gap: 6px; }
+
+  /* MODAL */
+  .modal-box {
+    width: 98vw !important;
+    max-height: 92vh !important;
+    border-width: 2px !important;
+  }
+  .modal-header { padding: 12px 14px !important; }
+  .modal-title { font-size: 20px !important; }
+  .modal-actions { padding: 8px 14px !important; flex-wrap: wrap; gap: 8px; }
+  .modal-download { font-size: 12px !important; padding: 7px 14px !important; }
+  .modal-file-info { display: none; }
+
+  /* SNAKE on mobile — smaller canvas */
+  #snake-canvas { width: 300px !important; height: 300px !important; }
+  .game-wrap { padding: 12px !important; gap: 10px !important; }
+  .game-score { font-size: 18px !important; }
+  .game-controls { font-size: 10px; }
+
+  /* Mobile touch controls for Snake */
+  .touch-controls {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 6px; width: 160px;
+  }
+  .touch-btn {
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.15);
+    color: var(--paper); font-size: 18px; padding: 12px;
+    text-align: center; border-radius: 4px;
+    user-select: none; -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  .touch-btn:active { background: rgba(232,22,42,0.3); border-color: var(--red); }
+
+  /* Mastermind on mobile */
+  .mm-game-area { flex-direction: column !important; align-items: center !important; gap: 14px !important; }
+  .mm-board { min-width: unset !important; width: 100% !important; max-width: 340px; }
+  .mm-peg { width: 26px !important; height: 26px !important; }
+  .mm-slot { width: 26px !important; height: 26px !important; }
+  .mm-color-btn { width: 32px !important; height: 32px !important; }
+  .mm-colors { gap: 6px !important; flex-wrap: wrap; justify-content: center; }
+
+  /* Section breaks */
+  #about, #skills, #projects, #contact { overflow: hidden; }
+}
+
+/* Halftone moins dense sur mobile */
+@media (max-width: 768px) {
+  body::after { background-size: 6px 6px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-dot"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    &lt;/<span>AD</span>&gt;
+    <div class="nav-chapter">PORTFOLIO — FR</div>
+  </a>
+  <div class="nav-links">
+    <a href="#about">À PROPOS</a>
+    <a href="#skills">COMPÉTENCES</a>
+    <a href="#projects">PROJETS</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+  <div class="nav-icons">
+    <a href="https://github.com/Akshit95820" target="_blank" class="nav-icon" title="GitHub">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/akshit-devadevan-7616673aa" target="_blank" class="nav-icon" title="LinkedIn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+
+  <!-- Panel 1: Big name — left full height -->
+  <div class="hero-p1">
+    <div class="hero-p1-bg">
+      <!-- Speed lines SVG -->
+      <svg viewBox="0 0 600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <g stroke="#0a0a0f" stroke-width="1">
+          <line x1="300" y1="450" x2="0" y2="0"/><line x1="300" y1="450" x2="60" y2="0"/>
+          <line x1="300" y1="450" x2="120" y2="0"/><line x1="300" y1="450" x2="180" y2="0"/>
+          <line x1="300" y1="450" x2="240" y2="0"/><line x1="300" y1="450" x2="300" y2="0"/>
+          <line x1="300" y1="450" x2="360" y2="0"/><line x1="300" y1="450" x2="420" y2="0"/>
+          <line x1="300" y1="450" x2="480" y2="0"/><line x1="300" y1="450" x2="540" y2="0"/>
+          <line x1="300" y1="450" x2="600" y2="0"/><line x1="300" y1="450" x2="600" y2="90"/>
+          <line x1="300" y1="450" x2="600" y2="180"/><line x1="300" y1="450" x2="600" y2="270"/>
+          <line x1="300" y1="450" x2="600" y2="360"/><line x1="300" y1="450" x2="600" y2="450"/>
+          <line x1="300" y1="450" x2="600" y2="540"/><line x1="300" y1="450" x2="600" y2="630"/>
+          <line x1="300" y1="450" x2="600" y2="720"/><line x1="300" y1="450" x2="600" y2="810"/>
+          <line x1="300" y1="450" x2="600" y2="900"/><line x1="300" y1="450" x2="540" y2="900"/>
+          <line x1="300" y1="450" x2="480" y2="900"/><line x1="300" y1="450" x2="420" y2="900"/>
+          <line x1="300" y1="450" x2="360" y2="900"/><line x1="300" y1="450" x2="300" y2="900"/>
+          <line x1="300" y1="450" x2="240" y2="900"/><line x1="300" y1="450" x2="180" y2="900"/>
+          <line x1="300" y1="450" x2="120" y2="900"/><line x1="300" y1="450" x2="60" y2="900"/>
+          <line x1="300" y1="450" x2="0" y2="900"/><line x1="300" y1="450" x2="0" y2="810"/>
+          <line x1="300" y1="450" x2="0" y2="720"/><line x1="300" y1="450" x2="0" y2="630"/>
+          <line x1="300" y1="450" x2="0" y2="540"/><line x1="300" y1="450" x2="0" y2="450"/>
+          <line x1="300" y1="450" x2="0" y2="360"/><line x1="300" y1="450" x2="0" y2="270"/>
+          <line x1="300" y1="450" x2="0" y2="180"/><line x1="300" y1="450" x2="0" y2="90"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="status-pill">
+      <span class="status-dot"></span>DISPONIBLE — ALTERNANCE
+    </div>
+    <div class="hero-furigana">アクシット・デヴァデヴァン</div>
+    <h1 class="hero-name">
+      Akshit<span class="name-line2">Devadevan</span>
+    </h1>
+    <p class="hero-desc">Étudiant en Bachelor Informatique. J'aime concevoir des systèmes clairs, élégants et solides.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-manga-primary">VOIR MES PROJETS →</a>
+      <a href="#contact" class="btn-manga-secondary">ME CONTACTER</a>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag-chip">JAVA</span>
+      <span class="hero-tag-chip">PYTHON</span>
+      <span class="hero-tag-chip">SQL</span>
+      <span class="hero-tag-chip">IA</span>
+    </div>
+  </div>
+
+  <!-- Panel 2: profile card — top right -->
+  <div class="hero-p2">
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.03;pointer-events:none;" viewBox="0 0 400 300"><g stroke="white" stroke-width=".5"><line x1="200" y1="150" x2="0" y2="0"/><line x1="200" y1="150" x2="50" y2="0"/><line x1="200" y1="150" x2="100" y2="0"/><line x1="200" y1="150" x2="150" y2="0"/><line x1="200" y1="150" x2="200" y2="0"/><line x1="200" y1="150" x2="250" y2="0"/><line x1="200" y1="150" x2="300" y2="0"/><line x1="200" y1="150" x2="350" y2="0"/><line x1="200" y1="150" x2="400" y2="0"/><line x1="200" y1="150" x2="400" y2="75"/><line x1="200" y1="150" x2="400" y2="150"/><line x1="200" y1="150" x2="400" y2="225"/><line x1="200" y1="150" x2="400" y2="300"/><line x1="200" y1="150" x2="300" y2="300"/><line x1="200" y1="150" x2="200" y2="300"/><line x1="200" y1="150" x2="100" y2="300"/><line x1="200" y1="150" x2="0" y2="300"/><line x1="200" y1="150" x2="0" y2="225"/><line x1="200" y1="150" x2="0" y2="150"/><line x1="200" y1="150" x2="0" y2="75"/></g></svg>
+    <div class="hp2-top">
+      <div class="hp2-chapter">PROFIL // CH.01</div>
+      <div class="hp2-avatar">AD</div>
+    </div>
+    <div class="hp2-title">Étudiant en <span>informatique</span></div>
+    <div class="hp2-rows">
+      <div class="hp2-row">
+        <span class="hp2-row-label">ACTUELLEMENT</span>
+        <span class="hp2-row-val">Bachelor Info · ESIEE-IT</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="hp2-row"><div><div class="hp2-row-label">STACK</div><div class="hp2-row-val" style="font-size:12px;">Java · Python · SQL · IA</div></div></div>
+        <div class="hp2-row"><div><div class="hp2-row-label">STATUT</div><div class="hp2-row-val green" style="font-size:12px;">Recherche alt.</div></div></div>
+      </div>
+    </div>
+    <div class="hp2-links">
+      <a href="https://github.com/Akshit95820" target="_blank" class="hp2-link">
+        GitHub
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/akshit-devadevan-7616673aa" target="_blank" class="hp2-link">
+        LinkedIn
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Panel 3: red quote panel — bottom right -->
+  <div class="hero-p3">
+    <span class="sfx">BOOM!</span>
+    <p class="hero-p3-quote">"J'aime transformer une idée en solution structurée."</p>
+    <p class="hero-p3-sub">Clarté · Rigueur · Curiosité — Bases solides, code agréable à faire évoluer.</p>
+  </div>
+
+</section>
+
+<!-- SECTION BREAK 01 -->
+<div class="section-break">
+  <div class="section-break-num">01</div>
+  <div class="section-break-title">À PROPOS</div>
+  <div class="section-break-line"></div>
+  <div class="section-break-jp">自己紹介</div>
+</div>
+
+<!-- ══════════════════ ABOUT ══════════════════ -->
+<section id="about" class="reveal">
+  <div class="about-left">
+    <div class="about-left-bg">
+      <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <g stroke="#0a0a0f" stroke-width="1">
+          <line x1="250" y1="350" x2="0" y2="0"/><line x1="250" y1="350" x2="83" y2="0"/><line x1="250" y1="350" x2="166" y2="0"/><line x1="250" y1="350" x2="250" y2="0"/><line x1="250" y1="350" x2="333" y2="0"/><line x1="250" y1="350" x2="416" y2="0"/><line x1="250" y1="350" x2="500" y2="0"/><line x1="250" y1="350" x2="500" y2="116"/><line x1="250" y1="350" x2="500" y2="233"/><line x1="250" y1="350" x2="500" y2="350"/><line x1="250" y1="350" x2="500" y2="466"/><line x1="250" y1="350" x2="500" y2="583"/><line x1="250" y1="350" x2="500" y2="700"/><line x1="250" y1="350" x2="333" y2="700"/><line x1="250" y1="350" x2="166" y2="700"/><line x1="250" y1="350" x2="0" y2="700"/><line x1="250" y1="350" x2="0" y2="583"/><line x1="250" y1="350" x2="0" y2="466"/><line x1="250" y1="350" x2="0" y2="350"/><line x1="250" y1="350" x2="0" y2="233"/><line x1="250" y1="350" x2="0" y2="116"/>
+        </g>
+      </svg>
+    </div>
+
+    <span class="section-tag-manga">// À PROPOS — SELF_INTRO.EXE</span>
+    <h2 class="about-title">Un profil orienté<br>clarté, <em>fiabilité,</em><br>et progression rapide.</h2>
+    <p class="about-body">Je recherche une alternance pour contribuer à des projets concrets, apprendre au contact d'une équipe exigeante et apporter une énergie d'exécution. Étudiant à l'ESIEE-IT Pontoise en Bachelor Informatique.</p>
+    <div class="about-callout">
+      <strong>Objectif :</strong> construire des bases solides, qui tiennent dans le temps et restent agréables à faire évoluer. Chaque ligne de code doit avoir une raison d'être.
+    </div>
+    <p class="about-body" style="font-size:13px;">Mathématiques · NSI · LLCER — mon parcours m'a donné une façon de penser structurée, que j'applique à chaque projet.</p>
+  </div>
+
+  <div class="about-right">
+    <div class="about-card-manga" data-sfx="FORCE!">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+        <span class="acm-label">// CE QUE JE RECHERCHE</span>
+        <span class="badge-alt">ALTERNANCE</span>
+      </div>
+      <div class="acm-title">Une équipe qui aime livrer proprement.</div>
+      <p class="acm-body">Environnement où je peux progresser vite (code review, mentorship), contribuer à un produit utile, et apprendre les bonnes pratiques : tests, qualité, CI.</p>
+      <div class="acm-grid">
+        <div class="acm-mini"><div class="acm-mini-label">VALEURS</div><div class="acm-mini-val">Clarté · Rigueur · Curiosité</div></div>
+        <div class="acm-mini"><div class="acm-mini-label">RYTHME</div><div class="acm-mini-val">Itérations courtes</div></div>
+        <div class="acm-mini"><div class="acm-mini-label">LANGUES</div><div class="acm-mini-val">FR · EN B1 · IT A2</div></div>
+        <div class="acm-mini"><div class="acm-mini-label">LOCALISATION</div><div class="acm-mini-val">Bruyères-sur-Oise, 95</div></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <a href="#projects" class="btn-manga-primary" style="justify-content:center;">PROJETS →</a>
+      <a href="#contact" class="btn-manga-secondary" style="text-align:center;justify-content:center;display:flex;align-items:center;background:transparent;color:var(--paper);border-color:rgba(255,255,255,0.2);box-shadow:3px 3px 0 rgba(255,255,255,0.1);">ÉCHANGER</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION BREAK 02 -->
+<div class="section-break">
+  <div class="section-break-num">02</div>
+  <div class="section-break-title">COMPÉTENCES</div>
+  <div class="section-break-line"></div>
+  <div class="section-break-jp">スキル</div>
+</div>
+
+<!-- ══════════════════ SKILLS ══════════════════ -->
+<section id="skills" class="reveal">
+  <div class="skills-header">
+    <span class="section-tag-manga" style="color:var(--red);">// COMPÉTENCES — STACK.CONFIG</span>
+    <h2 class="skills-big-title">Le cœur de mon <span>stack</span> :<br>Java, Python, SQL, IA.</h2>
+    <p class="skills-sub">Des bases solides + une approche orientée produit : la solution la plus claire, la plus stable, la plus utile.</p>
+  </div>
+
+  <div class="skills-panels">
+    <div class="skill-panel">
+      <div class="sp-number">01</div>
+      <div class="sp-icon">{ }</div>
+      <div class="sp-name">JAVA</div>
+      <h3 class="sp-title">Back-end robuste &amp; orienté production</h3>
+      <ul class="sp-bullets">
+        <li class="sp-bullet">Conception orientée objet, patterns, lisibilité et maintenabilité.</li>
+        <li class="sp-bullet">Sensibilité performance : structures de données, complexité, tests.</li>
+      </ul>
+    </div>
+    <div class="skill-panel">
+      <div class="sp-number">02</div>
+      <div class="sp-icon">▷</div>
+      <div class="sp-name">PYTHON</div>
+      <h3 class="sp-title">Automatisation, data &amp; scripting efficace</h3>
+      <ul class="sp-bullets">
+        <li class="sp-bullet">Scripts d'automatisation, parsing, petites pipelines data.</li>
+        <li class="sp-bullet">Prototypage rapide : itérations courtes, feedback immédiat.</li>
+        <li class="sp-bullet">Approche pragmatique : clarté &gt; magie.</li>
+      </ul>
+    </div>
+    <div class="skill-panel">
+      <div class="sp-number">03</div>
+      <div class="sp-icon">⊚</div>
+      <div class="sp-name">SQL</div>
+      <h3 class="sp-title">Modélisation &amp; requêtes qui racontent la vérité</h3>
+      <ul class="sp-bullets">
+        <li class="sp-bullet">Schémas propres, intégrité, jointures et agrégations.</li>
+        <li class="sp-bullet">Requêtes lisibles + indexation pensée dès le départ.</li>
+        <li class="sp-bullet">Données utiles, pas juste stockées.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="skills-coming-row">
+    <div class="skill-dim-panel">
+      <div class="skill-dim-left">
+        <div class="skill-dim-icon">🤖</div>
+        <div>
+          <div class="skill-dim-name">INTELLIGENCE ARTIFICIELLE</div>
+          <div class="skill-dim-sub">Outils IA, prompt engineering</div>
+        </div>
+      </div>
+      <span class="badge-inprogress">PRATIQUÉ</span>
+    </div>
+    <div class="skill-dim-panel">
+      <div class="skill-dim-left">
+        <div class="skill-dim-icon">⚙</div>
+        <div>
+          <div class="skill-dim-name">DEVOPS</div>
+          <div class="skill-dim-sub">CI/CD, Linux, conteneurisation</div>
+        </div>
+      </div>
+      <span class="badge-inprogress">EN COURS</span>
+    </div>
+    <div class="skill-dim-panel">
+      <div class="skill-dim-left">
+        <div class="skill-dim-icon">🔒</div>
+        <div>
+          <div class="skill-dim-name">CYBERSÉCURITÉ</div>
+          <div class="skill-dim-sub">Sécurité applicative &amp; systèmes</div>
+        </div>
+      </div>
+      <span class="badge-coming">À VENIR</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION BREAK 03 -->
+<div class="section-break" style="background:var(--ink);border-color:rgba(255,255,255,0.1);">
+  <div class="section-break-num" style="color:var(--yellow);">03</div>
+  <div class="section-break-title" style="color:var(--paper);">PROJETS</div>
+  <div class="section-break-line" style="background:rgba(255,255,255,0.1);"></div>
+  <div class="section-break-jp" style="color:rgba(255,255,255,0.2);">作品集</div>
+</div>
+
+<!-- ══════════════════ PROJECTS ══════════════════ -->
+<section id="projects" class="reveal">
+  <div class="projects-header">
+    <div class="projects-header-left">
+      <span class="section-tag-manga" style="color:var(--yellow);">// PROJETS — PORTFOLIO.DIR</span>
+      <h2 class="proj-big-title">Quelques <span>réalisations.</span></h2>
+      <p class="proj-sub">Projets académiques et personnels.</p>
+    </div>
+    <div class="search-manga">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" placeholder="RECHERCHER UN PROJET..." oninput="filterProjects(this.value)">
+    </div>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+    <div class="project-panel" data-name="mastermind" onclick="openModal('mastermind')">
+      <div class="pp-corner-num">01</div>
+      <div class="pp-top">
+        <div class="pp-icon">🧠</div>
+        <span class="pp-num-label">PROJET #01</span>
+      </div>
+      <div class="pp-type">// PROJET PERSONNEL — PYTHON</div>
+      <h3 class="pp-title">Mastermind</h3>
+      <p class="pp-desc">Jeu de logique développé en Python en tant que projet personnel. Approfondissement du langage Python et intégration d'outils d'IA. Projet de longue durée (5 mois).</p>
+      <div class="pp-tags">
+        <span class="pp-tag">PYTHON</span><span class="pp-tag">IA</span><span class="pp-tag">NOV 2025 – MAR 2026</span>
+      </div>
+      <div class="pp-action">CODE + TÉLÉCHARGEMENT →</div>
+    </div>
+    <div class="project-panel" data-name="serpent snake" onclick="openModal('serpent')">
+      <div class="pp-corner-num">02</div>
+      <div class="pp-top">
+        <div class="pp-icon">🐍</div>
+        <span class="pp-num-label">PROJET #02</span>
+      </div>
+      <div class="pp-type">// PROJET PERSONNEL — PYTHON</div>
+      <h3 class="pp-title">Jeu du Serpent</h3>
+      <p class="pp-desc">Jeu du Snake fonctionnel développé en Python en tant que projet personnel. Logique de jeu, boucle événementielle, interface graphique tkinter.</p>
+      <div class="pp-tags">
+        <span class="pp-tag">PYTHON</span><span class="pp-tag">SEP 2025 – OCT 2025</span>
+      </div>
+      <div class="pp-action">CODE + TÉLÉCHARGEMENT →</div>
+    </div>
+    <div class="project-panel" data-name="todolist todo" onclick="openModal('todolist')">
+      <div class="pp-corner-num">03</div>
+      <div class="pp-top">
+        <div class="pp-icon">📋</div>
+        <span class="pp-num-label">PROJET #03</span>
+      </div>
+      <div class="pp-type">// PROJET PERSO — GITHUB</div>
+      <h3 class="pp-title">Todolist</h3>
+      <p class="pp-desc">Application de gestion de tâches disponible en open-source sur GitHub. Structuration complète d'un projet et publication sur un dépôt public.</p>
+      <div class="pp-tags">
+        <span class="pp-tag">GITHUB</span><span class="pp-tag">OPEN-SOURCE</span>
+      </div>
+      <div class="pp-action">OUVRIR SUR GITHUB →</div>
+    </div>
+    <div class="project-panel" data-name="aryaslist liste" onclick="openModal('aryaslist')">
+      <div class="pp-corner-num">04</div>
+      <div class="pp-top">
+        <div class="pp-icon">📂</div>
+        <span class="pp-num-label">PROJET #04</span>
+      </div>
+      <div class="pp-type">// PROJET PERSO — GITHUB</div>
+      <h3 class="pp-title">AryasList</h3>
+      <p class="pp-desc">Projet de liste publié sur GitHub. Exploration de la gestion de données, de l'organisation du code et du versionnement avec Git.</p>
+      <div class="pp-tags">
+        <span class="pp-tag">GITHUB</span><span class="pp-tag">DONNÉES</span>
+      </div>
+      <div class="pp-action">OUVRIR SUR GITHUB →</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION BREAK 04 -->
+<div class="section-break">
+  <div class="section-break-num">04</div>
+  <div class="section-break-title">CONTACT</div>
+  <div class="section-break-line"></div>
+  <div class="section-break-jp">連絡先</div>
+</div>
+
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<section id="contact" class="reveal">
+  <div class="contact-left">
+    <div class="contact-left-bg">
+      <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><g stroke="#0a0a0f" stroke-width="1"><line x1="250" y1="350" x2="0" y2="0"/><line x1="250" y1="350" x2="83" y2="0"/><line x1="250" y1="350" x2="166" y2="0"/><line x1="250" y1="350" x2="250" y2="0"/><line x1="250" y1="350" x2="333" y2="0"/><line x1="250" y1="350" x2="416" y2="0"/><line x1="250" y1="350" x2="500" y2="0"/><line x1="250" y1="350" x2="500" y2="116"/><line x1="250" y1="350" x2="500" y2="233"/><line x1="250" y1="350" x2="500" y2="350"/><line x1="250" y1="350" x2="500" y2="466"/><line x1="250" y1="350" x2="500" y2="583"/><line x1="250" y1="350" x2="500" y2="700"/><line x1="250" y1="350" x2="333" y2="700"/><line x1="250" y1="350" x2="166" y2="700"/><line x1="250" y1="350" x2="0" y2="700"/><line x1="250" y1="350" x2="0" y2="583"/><line x1="250" y1="350" x2="0" y2="466"/><line x1="250" y1="350" x2="0" y2="350"/><line x1="250" y1="350" x2="0" y2="233"/><line x1="250" y1="350" x2="0" y2="116"/></g></svg>
+    </div>
+    <span class="section-tag-manga">// CONTACT — SEND_MSG.EXE</span>
+    <h2 class="contact-big">On<br><span class="red">échange</span><br>?</h2>
+    <p class="contact-sub">Si tu cherches un profil motivé, rigoureux et prêt à progresser vite : je suis partant.</p>
+
+    <div class="contact-items">
+      <a href="mailto:akshitddbr@gmail.com" class="contact-item-manga">
+        <div class="cim-left">
+          <span class="cim-label">EMAIL</span>
+          <span class="cim-val">akshitddbr@gmail.com</span>
+          <span class="cim-note">Le moyen le plus direct.</span>
+        </div>
+        <div class="cim-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+      </a>
+      <div class="contact-grid-2">
+        <a href="https://github.com/Akshit95820" target="_blank" class="contact-item-manga">
+          <div class="cim-left">
+            <span class="cim-label">GITHUB</span>
+            <span class="cim-val">Voir mes repos</span>
+          </div>
+          <div class="cim-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/akshit-devadevan-7616673aa" target="_blank" class="contact-item-manga">
+          <div class="cim-left">
+            <span class="cim-label">LINKEDIN</span>
+            <span class="cim-val">Me contacter</span>
+          </div>
+          <div class="cim-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-right">
+    <div>
+      <div class="cr-top">
+        <span class="cr-chapter">// EN BREF — RÉSUMÉ.TXT</span>
+        <span class="cr-lang">FR</span>
+      </div>
+      <h3 class="cr-title" style="margin-top:16px;">Étudiant en Bachelor Informatique</h3>
+      <p class="cr-body">Je recherche une alternance pour apprendre, livrer, et gagner en responsabilité. Motivé, rigoureux, prêt à progresser vite.</p>
+      <div class="cr-dispo">
+        <div class="cr-dispo-label">DISPONIBILITÉ</div>
+        <div class="cr-dispo-val">À définir — flexible</div>
+      </div>
+    </div>
+    <div>
+      <a href="#" class="btn-scroll-manga" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+        RETOUR EN HAUT
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="foot-brand">Akshit <span>Devadevan</span></div>
+    <div class="foot-sub">PORTFOLIO — MODERNE · CRÉATIF · PROFESSIONNEL</div>
+  </div>
+  <nav class="foot-links">
+    <a href="#about">À PROPOS</a>
+    <a href="#skills">COMPÉTENCES</a>
+    <a href="#projects">PROJETS</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <div class="foot-socials">
+    <a href="https://github.com/Akshit95820" target="_blank" class="foot-social">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/akshit-devadevan-7616673aa" target="_blank" class="foot-social">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</footer>
+<div class="foot-copy">© 2026 — Construit avec attention au détail.</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Custom cursor — tous écrans sauf mobile
+(function() {
+  if (window.innerWidth <= 768) return;
+
+  var cur = document.getElementById('cursor');
+  var dot = document.getElementById('cursor-dot');
+  if (!cur || !dot) return;
+
+  // Force les styles directement en JS pour éviter toute interférence
+  cur.style.cssText = [
+    'position:fixed',
+    'z-index:99999',
+    'pointer-events:none',
+    'width:22px',
+    'height:22px',
+    'border:3px solid #e8162a',
+    'background:rgba(232,22,42,0.2)',
+    'border-radius:0',
+    'top:-100px',
+    'left:-100px',
+    'transform:translate(-50%,-50%) rotate(45deg)',
+    'transition:width .15s ease,height .15s ease,background .15s ease,border-color .15s ease',
+    'mix-blend-mode:normal',
+    'display:block'
+  ].join(';');
+
+  dot.style.cssText = [
+    'position:fixed',
+    'z-index:99999',
+    'pointer-events:none',
+    'width:7px',
+    'height:7px',
+    'background:#ffd60a',
+    'border-radius:0',
+    'top:-100px',
+    'left:-100px',
+    'transform:translate(-50%,-50%)',
+    'display:block'
+  ].join(';');
+
+  document.addEventListener('mousemove', function(e) {
+    cur.style.left = e.clientX + 'px';
+    cur.style.top  = e.clientY + 'px';
+    dot.style.left = e.clientX + 'px';
+    dot.style.top  = e.clientY + 'px';
+  }, { passive: true });
+
+  document.addEventListener('mouseover', function(e) {
+    if (e.target.closest('a,button,input,[onclick]')) {
+      cur.style.width  = '38px';
+      cur.style.height = '38px';
+      cur.style.background = 'rgba(232,22,42,0.35)';
+      cur.style.borderColor = '#ffd60a';
+    } else {
+      cur.style.width  = '22px';
+      cur.style.height = '22px';
+      cur.style.background = 'rgba(232,22,42,0.2)';
+      cur.style.borderColor = '#e8162a';
+    }
+  });
+})();
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(r => observer.observe(r));
+
+// Project filter
+function filterProjects(q) {
+  document.querySelectorAll('#projects-grid .project-panel').forEach(c => {
+    c.style.display = c.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
+
+// Nav active
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navLinks.forEach(a => { a.style.background = a.getAttribute('href') === '#' + current ? 'var(--red)' : ''; a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : ''; });
+});
+
+
+// ── MODAL SYSTEM ──
+var _SB64 = "ZnJvbSB0a2ludGVyIGltcG9ydCAqDQpmcm9tIHJhbmRvbSBpbXBvcnQgcmFuZHJhbmdlDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBDT05GSUdVUkFUSU9OIC0tLS0tLS0tLS0tLS0tLS0NCkxBUkdFVVIgPSA1MDANCkhBVVRFVVIgPSA1MDANClRBSUxMRSA9IDEwDQpUQUlMTEVfUE9NTUUgPSA4DQpWSVRFU1NFID0gODANCg0KQ09VTEVVUl9GT05EID0gIiMyYjJiMmIiDQpDT1VMRVVSX1RFVEUgPSAiIzAwYzg1MyINCkNPVUxFVVJfQ09SUFMgPSAiIzU1ZWZjNCINCkNPVUxFVVJfUE9NTUUgPSAiI2ZiODUwMCINCkNPVUxFVVJfTVVSID0gIiM4ZDk5YWUiDQpDT1VMRVVSX1RFWFRFID0gIiNmMWZhZWUiDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBQT1NJVElPTiBERSBERVBBUlQgLS0tLS0tLS0tLS0tLS0tLQ0KUE9TSVRJT05fREVQQVJUID0gW1syNTAsIDI1MF0sIFsyNDAsIDI1MF0sIFsyMzAsIDI1MF1dDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBWQVJJQUJMRVMgLS0tLS0tLS0tLS0tLS0tLQ0KZGlyZWN0aW9uID0gImhhdXQiDQpqZXVfYWN0aWYgPSBGYWxzZQ0Kc2NvcmUgPSAwDQpTZXJwZW50ID0gW10NCnBYID0gMA0KcFkgPSAwDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBNVVJTIC0tLS0tLS0tLS0tLS0tLS0NCm11cnMgPSBbXQ0KDQpmb3IgeCBpbiByYW5nZSgxMDAsIDQwMCwgVEFJTExFKToNCiAgICBtdXJzLmFwcGVuZChbeCwgMTIwXSkNCiAgICBtdXJzLmFwcGVuZChbeCwgMzYwXSkNCg0KZm9yIHkgaW4gcmFuZ2UoMTYwLCAzMjAsIFRBSUxMRSk6DQogICAgbXVycy5hcHBlbmQoWzE1MCwgeV0pDQogICAgbXVycy5hcHBlbmQoWzM1MCwgeV0pDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBGT05DVElPTlMgLS0tLS0tLS0tLS0tLS0tLQ0KZGVmIGluaXRpYWxpc2VyX2pldSgpOg0KICAgICIiIlLDqWluaXRpYWxpc2F0aW9uIGNvbXBsw6h0ZSBkdSBqZXUiIiINCiAgICBnbG9iYWwgU2VycGVudCwgZGlyZWN0aW9uLCBzY29yZSwgcFgsIHBZLCBqZXVfYWN0aWYNCg0KICAgIFNlcnBlbnQgPSBbc2VnbWVudFs6XSBmb3Igc2VnbWVudCBpbiBQT1NJVElPTl9ERVBBUlRdDQogICAgZGlyZWN0aW9uID0gImhhdXQiDQogICAgc2NvcmUgPSAwDQogICAgamV1X2FjdGlmID0gVHJ1ZQ0KDQogICAgcGxhY2VyX3BvbW1lKCkNCiAgICBkZXNzaW5lcigpDQoNCmRlZiBwbGFjZXJfcG9tbWUoKToNCiAgICBnbG9iYWwgcFgsIHBZDQogICAgd2hpbGUgVHJ1ZToNCiAgICAgICAgcFggPSByYW5kcmFuZ2UoMjAsIExBUkdFVVIgLSAyMCwgVEFJTExFKQ0KICAgICAgICBwWSA9IHJhbmRyYW5nZSgyMCwgSEFVVEVVUiAtIDIwLCBUQUlMTEUpDQogICAgICAgIGlmIFtwWCwgcFldIG5vdCBpbiBtdXJzIGFuZCBbcFgsIHBZXSBub3QgaW4gU2VycGVudDoNCiAgICAgICAgICAgIGJyZWFrDQoNCmRlZiBsYW5jZXJfamV1KCk6DQogICAgaWYgbm90IGpldV9hY3RpZjoNCiAgICAgICAgaW5pdGlhbGlzZXJfamV1KCkNCiAgICAgICAgZGVwbGFjZXJfc2VycGVudCgpDQoNCmRlZiBmaW5fZGVfcGFydGllKCk6DQogICAgZ2xvYmFsIGpldV9hY3RpZg0KICAgIGpldV9hY3RpZiA9IEZhbHNlDQoNCiAgICBjYW4uY3JlYXRlX3RleHQoDQogICAgICAgIExBUkdFVVIgLy8gMiwNCiAgICAgICAgSEFVVEVVUiAvLyAyLA0KICAgICAgICB0ZXh0PWYiR0FNRSBPVkVSXG5TY29yZSA6IHtzY29yZX0iLA0KICAgICAgICBmaWxsPSIjZmY1OTVlIiwNCiAgICAgICAgZm9udD0oIkFyaWFsIiwgMjQsICJib2xkIiksDQogICAgICAgIGp1c3RpZnk9ImNlbnRlciINCiAgICApDQoNCmRlZiBkZXBsYWNlcl9zZXJwZW50KCk6DQogICAgZ2xvYmFsIHNjb3JlDQoNCiAgICBpZiBub3QgamV1X2FjdGlmOg0KICAgICAgICByZXR1cm4NCg0KICAgICMgRMOpcGxhY2VtZW50IGR1IGNvcnBzDQogICAgZm9yIGkgaW4gcmFuZ2UobGVuKFNlcnBlbnQpIC0gMSwgMCwgLTEpOg0KICAgICAgICBTZXJwZW50W2ldID0gU2VycGVudFtpIC0gMV1bOl0NCg0KICAgICMgRMOpcGxhY2VtZW50IGRlIGxhIHTDqnRlDQogICAgaWYgZGlyZWN0aW9uID09ICJnYXVjaGUiOg0KICAgICAgICBTZXJwZW50WzBdWzBdIC09IFRBSUxMRQ0KICAgIGVsaWYgZGlyZWN0aW9uID09ICJkcm9pdGUiOg0KICAgICAgICBTZXJwZW50WzBdWzBdICs9IFRBSUxMRQ0KICAgIGVsaWYgZGlyZWN0aW9uID09ICJoYXV0IjoNCiAgICAgICAgU2VycGVudFswXVsxXSAtPSBUQUlMTEUNCiAgICBlbGlmIGRpcmVjdGlvbiA9PSAiYmFzIjoNCiAgICAgICAgU2VycGVudFswXVsxXSArPSBUQUlMTEUNCg0KICAgICMgQ29sbGlzaW9uIGF2ZWMgbGVzIGJvcmRzDQogICAgaWYgKA0KICAgICAgICBTZXJwZW50WzBdWzBdIDwgMCBvciBTZXJwZW50WzBdWzBdID49IExBUkdFVVIgb3INCiAgICAgICAgU2VycGVudFswXVsxXSA8IDAgb3IgU2VycGVudFswXVsxXSA+PSBIQVVURVVSDQogICAgKToNCiAgICAgICAgZmluX2RlX3BhcnRpZSgpDQogICAgICAgIHJldHVybg0KDQogICAgIyBDb2xsaXNpb24gYXZlYyBsZXMgbXVycw0KICAgIGlmIFNlcnBlbnRbMF0gaW4gbXVyczoNCiAgICAgICAgZmluX2RlX3BhcnRpZSgpDQogICAgICAgIHJldHVybg0KDQogICAgIyBDb2xsaXNpb24gYXZlYyBsYSBwb21tZQ0KICAgIGlmIGFicyhTZXJwZW50WzBdWzBdIC0gcFgpIDwgVEFJTExFIGFuZCBhYnMoU2VycGVudFswXVsxXSAtIHBZKSA8IFRBSUxMRToNCiAgICAgICAgU2VycGVudC5hcHBlbmQoU2VycGVudFstMV1bOl0pDQogICAgICAgIHNjb3JlICs9IDENCiAgICAgICAgcGxhY2VyX3BvbW1lKCkNCg0KICAgIGRlc3NpbmVyKCkNCiAgICBmZW4uYWZ0ZXIoVklURVNTRSwgZGVwbGFjZXJfc2VycGVudCkNCg0KZGVmIGRlc3NpbmVyKCk6DQogICAgY2FuLmRlbGV0ZSgiYWxsIikNCg0KICAgICMgU2NvcmUNCiAgICBjYW4uY3JlYXRlX3RleHQoDQogICAgICAgIDcwLCAxNSwNCiAgICAgICAgdGV4dD1mIlNjb3JlIDoge3Njb3JlfSIsDQogICAgICAgIGZpbGw9Q09VTEVVUl9URVhURSwNCiAgICAgICAgZm9udD0oIkFyaWFsIiwgMTIsICJib2xkIikNCiAgICApDQoNCiAgICAjIFBvbW1lDQogICAgY2FuLmNyZWF0ZV9vdmFsKA0KICAgICAgICBwWCwgcFksDQogICAgICAgIHBYICsgVEFJTExFX1BPTU1FLCBwWSArIFRBSUxMRV9QT01NRSwNCiAgICAgICAgZmlsbD1DT1VMRVVSX1BPTU1FLA0KICAgICAgICBvdXRsaW5lPSIiDQogICAgKQ0KDQogICAgIyBNdXJzDQogICAgZm9yIG11ciBpbiBtdXJzOg0KICAgICAgICBjYW4uY3JlYXRlX3JlY3RhbmdsZSgNCiAgICAgICAgICAgIG11clswXSwgbXVyWzFdLA0KICAgICAgICAgICAgbXVyWzBdICsgVEFJTExFLCBtdXJbMV0gKyBUQUlMTEUsDQogICAgICAgICAgICBmaWxsPUNPVUxFVVJfTVVSLA0KICAgICAgICAgICAgb3V0bGluZT0iIg0KICAgICAgICApDQoNCiAgICAjIFNlcnBlbnQNCiAgICBmb3Igc2VnbWVudCBpbiBTZXJwZW50WzE6XToNCiAgICAgICAgY2FuLmNyZWF0ZV9yZWN0YW5nbGUoDQogICAgICAgICAgICBzZWdtZW50WzBdLCBzZWdtZW50WzFdLA0KICAgICAgICAgICAgc2VnbWVudFswXSArIFRBSUxMRSwgc2VnbWVudFsxXSArIFRBSUxMRSwNCiAgICAgICAgICAgIGZpbGw9Q09VTEVVUl9DT1JQUywNCiAgICAgICAgICAgIG91dGxpbmU9IiINCiAgICAgICAgKQ0KDQogICAgIyBUw6p0ZQ0KICAgIGNhbi5jcmVhdGVfcmVjdGFuZ2xlKA0KICAgICAgICBTZXJwZW50WzBdWzBdLCBTZXJwZW50WzBdWzFdLA0KICAgICAgICBTZXJwZW50WzBdWzBdICsgVEFJTExFLCBTZXJwZW50WzBdWzFdICsgVEFJTExFLA0KICAgICAgICBmaWxsPUNPVUxFVVJfVEVURSwNCiAgICAgICAgb3V0bGluZT0iIg0KICAgICkNCg0KIyAtLS0tLS0tLS0tLS0tLS0tIENPTlRST0xFUyAtLS0tLS0tLS0tLS0tLS0tDQpkZWYgZ2F1Y2hlKGV2ZW50KToNCiAgICBnbG9iYWwgZGlyZWN0aW9uDQogICAgaWYgZGlyZWN0aW9uICE9ICJkcm9pdGUiOg0KICAgICAgICBkaXJlY3Rpb24gPSAiZ2F1Y2hlIg0KDQpkZWYgZHJvaXRlKGV2ZW50KToNCiAgICBnbG9iYWwgZGlyZWN0aW9uDQogICAgaWYgZGlyZWN0aW9uICE9ICJnYXVjaGUiOg0KICAgICAgICBkaXJlY3Rpb24gPSAiZHJvaXRlIg0KDQpkZWYgaGF1dChldmVudCk6DQogICAgZ2xvYmFsIGRpcmVjdGlvbg0KICAgIGlmIGRpcmVjdGlvbiAhPSAiYmFzIjoNCiAgICAgICAgZGlyZWN0aW9uID0gImhhdXQiDQoNCmRlZiBiYXMoZXZlbnQpOg0KICAgIGdsb2JhbCBkaXJlY3Rpb24NCiAgICBpZiBkaXJlY3Rpb24gIT0gImhhdXQiOg0KICAgICAgICBkaXJlY3Rpb24gPSAiYmFzIg0KDQojIC0tLS0tLS0tLS0tLS0tLS0gSU5URVJGQUNFIC0tLS0tLS0tLS0tLS0tLS0NCmZlbiA9IFRrKCkNCmZlbi50aXRsZSgi8J+QjSBKZXUgZHUgU2VycGVudCIpDQoNCmNhbiA9IENhbnZhcyhmZW4sIHdpZHRoPUxBUkdFVVIsIGhlaWdodD1IQVVURVVSLCBiZz1DT1VMRVVSX0ZPTkQpDQpjYW4ucGFjayhwYWR4PTEwLCBwYWR5PTEwKQ0KDQpMYWJlbCgNCiAgICBmZW4sDQogICAgdGV4dD0iQ29udHLDtGxlcyA6IFogUSBTIEQgfCDDiXZpdGV6IGxlcyBtdXJzIHwgTWFuZ2V6IGxlcyBwb2ludHMiLA0KICAgIGZnPUNPVUxFVVJfQ09SUFMsDQogICAgYmc9Q09VTEVVUl9GT05EDQopLnBhY2socGFkeT01KQ0KDQpGcmFtZV9ib3V0b25zID0gRnJhbWUoZmVuLCBiZz1DT1VMRVVSX0ZPTkQpDQpGcmFtZV9ib3V0b25zLnBhY2socGFkeT01KQ0KDQpCdXR0b24oDQogICAgRnJhbWVfYm91dG9ucywNCiAgICB0ZXh0PSLilrYgRMOpbWFycmVyIGxhIHBhcnRpZSIsDQogICAgY29tbWFuZD1sYW5jZXJfamV1LA0KICAgIGJnPSIjMWYxZjFmIiwNCiAgICBmZz1DT1VMRVVSX0NPUlBTLA0KICAgIHdpZHRoPTE4DQopLnBhY2soc2lkZT1MRUZULCBwYWR4PTUpDQoNCkJ1dHRvbigNCiAgICBGcmFtZV9ib3V0b25zLA0KICAgIHRleHQ9IuKdjCBRdWl0dGVyIGxlIGpldSIsDQogICAgY29tbWFuZD1mZW4uZGVzdHJveSwNCiAgICBiZz0iIzFmMWYxZiIsDQogICAgZmc9IiNmZjc2NzUiLA0KICAgIHdpZHRoPTE1DQopLnBhY2soc2lkZT1SSUdIVCwgcGFkeD01KQ0KDQpmZW4uYmluZCgiPHE+IiwgZ2F1Y2hlKQ0KZmVuLmJpbmQoIjxkPiIsIGRyb2l0ZSkNCmZlbi5iaW5kKCI8ej4iLCBoYXV0KQ0KZmVuLmJpbmQoIjxzPiIsIGJhcykNCg0KZmVuLm1haW5sb29wKCkNCg==";
+var _MB64 = "aW1wb3J0IHRraW50ZXIgYXMgdGsNCmZyb20gcmFuZG9tIGltcG9ydCBzYW1wbGUNCg0KY2xhc3MgTWFzdGVybWluZEFwcDoNCiAgICBkZWYgX19pbml0X18oc2VsZiwgcm9vdCk6DQogICAgICAgIHNlbGYucm9vdCA9IHJvb3QNCiAgICAgICAgc2VsZi5yb290LnRpdGxlKCJNYXN0ZXJtaW5kIikNCiAgICAgICAgc2VsZi5jb3VsZXVycyA9IFsiamF1bmUiLCAiYmxldSIsICJyb3VnZSIsICJ2ZXJ0IiwgImJsYW5jIiwgIm5vaXIiXQ0KICAgICAgICBzZWxmLmNvdWxldXJzX2hleCA9IHsNCiAgICAgICAgICAgICJqYXVuZSI6ICIjRkZGRjAwIiwNCiAgICAgICAgICAgICJibGV1IjogIiMwMDAwRkYiLA0KICAgICAgICAgICAgInJvdWdlIjogIiNGRjAwMDAiLA0KICAgICAgICAgICAgInZlcnQiOiAiIzAwRkYwMCIsDQogICAgICAgICAgICAiYmxhbmMiOiAiI0ZGRkZGRiIsDQogICAgICAgICAgICAibm9pciI6ICIjMDAwMDAwIg0KICAgICAgICB9DQoNCiAgICAgICAgIyBJbml0aWFsaXNlciBsYSBjb21iaW5haXNvbiBzZWNyw6h0ZQ0KICAgICAgICBzZWxmLmNvdWxldXJzX2FfZGV2aW5lciA9IHNlbGYuZ2VuZXJlcl9jb3VsZXVycygpDQogICAgICAgIHNlbGYudGVudGF0aXZlcyA9IDEwDQogICAgICAgIHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGUgPSBbXQ0KDQogICAgICAgICMgSW50ZXJmYWNlIHNldHVwDQogICAgICAgIHNlbGYubGFiZWxfaW5zdHJ1Y3Rpb24gPSB0ay5MYWJlbChyb290LCB0ZXh0PSJDbGlxdWV6IHN1ciBsZXMgY291bGV1cnMgcG91ciBkZXZpbmVyIGxhIGNvbWJpbmFpc29uIDoiKQ0KICAgICAgICBzZWxmLmxhYmVsX2luc3RydWN0aW9uLnBhY2socGFkeT0xMCkNCg0KICAgICAgICBzZWxmLmZyYW1lX2NvdWxldXJzID0gdGsuRnJhbWUocm9vdCkNCiAgICAgICAgc2VsZi5mcmFtZV9jb3VsZXVycy5wYWNrKHBhZHk9MTApDQoNCiAgICAgICAgIyBCb3V0b25zIGRlIHPDqWxlY3Rpb24gZGUgY291bGV1cnMNCiAgICAgICAgZm9yIGNvdWxldXIgaW4gc2VsZi5jb3VsZXVyczoNCiAgICAgICAgICAgIGJvdXRvbiA9IHRrLkJ1dHRvbihzZWxmLmZyYW1lX2NvdWxldXJzLCBiZz1zZWxmLmNvdWxldXJzX2hleFtjb3VsZXVyXSwgd2lkdGg9NSwgaGVpZ2h0PTIsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29tbWFuZD1sYW1iZGEgY291bGV1cj1jb3VsZXVyOiBzZWxmLmFqb3V0ZXJfY291bGV1cihjb3VsZXVyKSkNCiAgICAgICAgICAgIGJvdXRvbi5ncmlkKHJvdz0wLCBjb2x1bW49c2VsZi5jb3VsZXVycy5pbmRleChjb3VsZXVyKSwgcGFkeD01KQ0KDQogICAgICAgICMgQWZmaWNoYWdlIGRlIGxhIGNvbWJpbmFpc29uIGVuIGNvdXJzDQogICAgICAgIHNlbGYuZnJhbWVfY29tYmluYWlzb24gPSB0ay5GcmFtZShyb290KQ0KICAgICAgICBzZWxmLmZyYW1lX2NvbWJpbmFpc29uLnBhY2socGFkeT0xMCkNCiAgICAgICAgc2VsZi5jb21iaW5haXNvbl9sYWJlbHMgPSBbdGsuTGFiZWwoc2VsZi5mcmFtZV9jb21iaW5haXNvbiwgYmc9ImdyZXkiLCB3aWR0aD01LCBoZWlnaHQ9MikgZm9yIF8gaW4gcmFuZ2UoNCldDQogICAgICAgIGZvciBpLCBsYWJlbCBpbiBlbnVtZXJhdGUoc2VsZi5jb21iaW5haXNvbl9sYWJlbHMpOg0KICAgICAgICAgICAgbGFiZWwuZ3JpZChyb3c9MCwgY29sdW1uPWksIHBhZHg9NSkNCg0KICAgICAgICBzZWxmLmJ1dHRvbl92YWxpZGVyID0gdGsuQnV0dG9uKHJvb3QsIHRleHQ9IlZhbGlkZXIgbGEgdGVudGF0aXZlIiwgY29tbWFuZD1zZWxmLnZhbGlkZXJfdGVudGF0aXZlLCBzdGF0ZT10ay5ESVNBQkxFRCkNCiAgICAgICAgc2VsZi5idXR0b25fdmFsaWRlci5wYWNrKHBhZHk9MTApDQoNCiAgICAgICAgIyBBZmZpY2hhZ2UgZGVzIHRlbnRhdGl2ZXMNCiAgICAgICAgc2VsZi5mcmFtZV90ZW50YXRpdmVzID0gdGsuRnJhbWUocm9vdCkNCiAgICAgICAgc2VsZi5mcmFtZV90ZW50YXRpdmVzLnBhY2socGFkeT0xMCkNCg0KICAgICAgICAjIEFmZmljaGVyIGxlcyB0ZW50YXRpdmVzIHByw6ljw6lkZW50ZXMNCiAgICAgICAgc2VsZi50ZW50YXRpdmVzX2xhYmVscyA9IFtdDQogICAgICAgIGZvciBfIGluIHJhbmdlKDEwKToNCiAgICAgICAgICAgIGxpZ25lID0gW3RrLkxhYmVsKHNlbGYuZnJhbWVfdGVudGF0aXZlcywgYmc9ImdyZXkiLCB3aWR0aD01LCBoZWlnaHQ9MikgZm9yIF8gaW4gcmFuZ2UoNCldDQogICAgICAgICAgICBmb3IgaSwgbGFiZWwgaW4gZW51bWVyYXRlKGxpZ25lKToNCiAgICAgICAgICAgICAgICBsYWJlbC5ncmlkKHJvdz1sZW4oc2VsZi50ZW50YXRpdmVzX2xhYmVscyksIGNvbHVtbj1pLCBwYWR4PTUpDQogICAgICAgICAgICBzZWxmLnRlbnRhdGl2ZXNfbGFiZWxzLmFwcGVuZChsaWduZSkNCiAgICAgICAgICAgIHRrLkxhYmVsKHNlbGYuZnJhbWVfdGVudGF0aXZlcywgdGV4dD0iIikuZ3JpZChyb3c9bGVuKHNlbGYudGVudGF0aXZlc19sYWJlbHMpLTEsIGNvbHVtbj00LCBwYWR4PTUpDQoNCiAgICAgICAgIyBMYWJlbCBwb3VyIGFmZmljaGVyIGxlIHLDqXN1bHRhdCBkZSBsYSB0ZW50YXRpdmUNCiAgICAgICAgc2VsZi5sYWJlbF9yZXN1bHRhdCA9IHRrLkxhYmVsKHJvb3QsIHRleHQ9IiIpDQogICAgICAgIHNlbGYubGFiZWxfcmVzdWx0YXQucGFjayhwYWR5PTEwKQ0KDQogICAgICAgICMgQm91dG9uICJRdWl0dGVyIiBwb3VyIGZlcm1lciBsJ2FwcGxpY2F0aW9uDQogICAgICAgIHNlbGYuYnV0dG9uX3F1aXR0ZXIgPSB0ay5CdXR0b24ocm9vdCwgdGV4dD0iUXVpdHRlciIsIGNvbW1hbmQ9c2VsZi5yb290LmRlc3Ryb3kpDQogICAgICAgIHNlbGYuYnV0dG9uX3F1aXR0ZXIucGFjayhwYWR5PTEwKQ0KDQogICAgZGVmIGdlbmVyZXJfY291bGV1cnMoc2VsZik6DQogICAgICAgIHJldHVybiBzYW1wbGUoc2VsZi5jb3VsZXVycywgNCkNCg0KICAgIGRlZiBham91dGVyX2NvdWxldXIoc2VsZiwgY291bGV1cik6DQogICAgICAgICIiIkFqb3V0ZSB1bmUgY291bGV1ciDDoCBsYSBjb21iaW5haXNvbiBlbiBjb3Vycy4iIiINCiAgICAgICAgaWYgbGVuKHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGUpIDwgNDoNCiAgICAgICAgICAgIHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGUuYXBwZW5kKGNvdWxldXIpDQogICAgICAgICAgICBzZWxmLmNvbWJpbmFpc29uX2xhYmVsc1tsZW4oc2VsZi5jb21iaW5haXNvbl9hY3R1ZWxsZSktMV0uY29uZmlnKGJnPXNlbGYuY291bGV1cnNfaGV4W2NvdWxldXJdKQ0KICAgICAgICAgICAgaWYgbGVuKHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGUpID09IDQ6DQogICAgICAgICAgICAgICAgc2VsZi5idXR0b25fdmFsaWRlci5jb25maWcoc3RhdGU9dGsuTk9STUFMKQ0KDQogICAgZGVmIHJlc3VsdGF0KHNlbGYsIGRldmluZXIpOg0KICAgICAgICAiIiJSZXRvdXJuZSBsZSBub21icmUgZGUgYm9ubmVzIGNvdWxldXJzIGV0IGRlIGNvdWxldXJzIGJpZW4gcGxhY8OpZXMuIiIiDQogICAgICAgIGJpZW5fcGxhY2VzID0gMA0KICAgICAgICBib25uZXNfY291bGV1cnMgPSAwDQogICAgICAgIHRlbXBfY291bGV1cnNfYV9kZXZpbmVyID0gc2VsZi5jb3VsZXVyc19hX2RldmluZXIuY29weSgpDQoNCiAgICAgICAgZm9yIGkgaW4gcmFuZ2UoNCk6DQogICAgICAgICAgICBpZiBkZXZpbmVyW2ldID09IHNlbGYuY291bGV1cnNfYV9kZXZpbmVyW2ldOg0KICAgICAgICAgICAgICAgIGJpZW5fcGxhY2VzICs9IDENCg0KICAgICAgICBmb3IgY291bGV1ciBpbiBkZXZpbmVyOg0KICAgICAgICAgICAgaWYgY291bGV1ciBpbiB0ZW1wX2NvdWxldXJzX2FfZGV2aW5lcjoNCiAgICAgICAgICAgICAgICBib25uZXNfY291bGV1cnMgKz0gMQ0KICAgICAgICAgICAgICAgIHRlbXBfY291bGV1cnNfYV9kZXZpbmVyLnJlbW92ZShjb3VsZXVyKQ0KDQogICAgICAgIHJldHVybiBib25uZXNfY291bGV1cnMsIGJpZW5fcGxhY2VzDQoNCiAgICBkZWYgdmFsaWRlcl90ZW50YXRpdmUoc2VsZik6DQogICAgICAgICIiIlZhbGlkZSBsYSBjb21iaW5haXNvbiBhY3R1ZWxsZS4iIiINCiAgICAgICAgZGV2aW5lciA9IHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGVbOl0NCiAgICAgICAgYm9ubmVzX2NvdWxldXJzLCBiaWVuX3BsYWNlcyA9IHNlbGYucmVzdWx0YXQoZGV2aW5lcikNCg0KICAgICAgICAjIE1ldCDDoCBqb3VyIGwnYWZmaWNoYWdlIGRlIGxhIHRlbnRhdGl2ZQ0KICAgICAgICBmb3IgaSBpbiByYW5nZSg0KToNCiAgICAgICAgICAgIHNlbGYudGVudGF0aXZlc19sYWJlbHNbMTAgLSBzZWxmLnRlbnRhdGl2ZXNdW2ldLmNvbmZpZyhiZz1zZWxmLmNvdWxldXJzX2hleFtkZXZpbmVyW2ldXSkNCg0KICAgICAgICAjIEFmZmljaGUgbGUgcsOpc3VsdGF0IGRlIGxhIHRlbnRhdGl2ZQ0KICAgICAgICBzZWxmLmxhYmVsX3Jlc3VsdGF0LmNvbmZpZygNCiAgICAgICAgICAgIHRleHQ9ZiJUZW50YXRpdmUgezExIC0gc2VsZi50ZW50YXRpdmVzfS8xMCA6IHtib25uZXNfY291bGV1cnN9IGNvdWxldXIocykgY29ycmVjdGUocyksIHtiaWVuX3BsYWNlc30gYmllbiBwbGFjw6llKHMpLiINCiAgICAgICAgKQ0KDQogICAgICAgIGlmIGJpZW5fcGxhY2VzID09IDQ6DQogICAgICAgICAgICBzZWxmLmxhYmVsX3Jlc3VsdGF0LmNvbmZpZyh0ZXh0PSJGw6lsaWNpdGF0aW9ucyAhIFZvdXMgYXZleiBkZXZpbsOpIGxhIGNvbWJpbmFpc29uIHNlY3LDqHRlLiIpDQogICAgICAgICAgICBzZWxmLmJ1dHRvbl92YWxpZGVyLmNvbmZpZyhzdGF0ZT10ay5ESVNBQkxFRCkNCiAgICAgICAgICAgIHJldHVybg0KDQogICAgICAgIHNlbGYudGVudGF0aXZlcyAtPSAxDQogICAgICAgIGlmIHNlbGYudGVudGF0aXZlcyA9PSAwOg0KICAgICAgICAgICAgc2VsZi5sYWJlbF9yZXN1bHRhdC5jb25maWcodGV4dD0iVm91cyBhdmV6IHBlcmR1ICEgTGEgY29tYmluYWlzb24gw6l0YWl0IDogIiArICIgIi5qb2luKHNlbGYuY291bGV1cnNfYV9kZXZpbmVyKSkNCiAgICAgICAgICAgIHNlbGYuYnV0dG9uX3ZhbGlkZXIuY29uZmlnKHN0YXRlPXRrLkRJU0FCTEVEKQ0KDQogICAgICAgICMgUsOpaW5pdGlhbGlzZSBwb3VyIGxhIHByb2NoYWluZSB0ZW50YXRpdmUNCiAgICAgICAgc2VsZi5jb21iaW5haXNvbl9hY3R1ZWxsZSA9IFtdDQogICAgICAgIGZvciBsYWJlbCBpbiBzZWxmLmNvbWJpbmFpc29uX2xhYmVsczoNCiAgICAgICAgICAgIGxhYmVsLmNvbmZpZyhiZz0iZ3JleSIpDQogICAgICAgIHNlbGYuYnV0dG9uX3ZhbGlkZXIuY29uZmlnKHN0YXRlPXRrLkRJU0FCTEVEKQ0KDQojIENyw6llciBldCBsYW5jZXIgbCdhcHBsaWNhdGlvbg0Kcm9vdCA9IHRrLlRrKCkNCmFwcCA9IE1hc3Rlcm1pbmRBcHAocm9vdCkNCnJvb3QubWFpbmxvb3AoKQ0K";
+var _SRAW = null, _MRAW = null;
+
+function _b64decode(b) {
+  return decodeURIComponent(escape(atob(b)));
+}
+
+function openModal(key) {
+  var overlay = document.getElementById('modal-overlay');
+  if (!overlay) { alert('Modal introuvable'); return; }
+  // Hide all modal contents
+  ['mc-mastermind','mc-serpent','mc-todolist','mc-aryaslist'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  var content = document.getElementById('mc-' + key);
+  if (!content) { console.error('No modal content for:', key); return; }
+  content.style.display = 'flex';
+  // Setup Python file modals
+  if (key === 'serpent') {
+    if (!_SRAW) _SRAW = _b64decode(_SB64);
+    var pre = document.getElementById('pre-serpent');
+    if (pre && !pre.dataset.loaded) { pre.textContent = _SRAW; pre.dataset.loaded = '1'; }
+    var dl = document.getElementById('dl-serpent');
+    if (dl) {
+      var blob = new Blob([_SRAW], {type: 'text/plain'});
+      dl.href = URL.createObjectURL(blob);
+    }
+  }
+  if (key === 'mastermind') {
+    if (!_MRAW) _MRAW = _b64decode(_MB64);
+    var pre2 = document.getElementById('pre-mastermind');
+    if (pre2 && !pre2.dataset.loaded) { pre2.textContent = _MRAW; pre2.dataset.loaded = '1'; }
+    var dl2 = document.getElementById('dl-mastermind');
+    if (dl2) {
+      var blob2 = new Blob([_MRAW], {type: 'text/plain'});
+      dl2.href = URL.createObjectURL(blob2);
+    }
+  }
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  var overlay = document.getElementById('modal-overlay');
+  if (overlay) overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+
+
+// ═══════════════════════════════
+//  MODAL SYSTEM
+// ═══════════════════════════════
+var _SB64 = "ZnJvbSB0a2ludGVyIGltcG9ydCAqDQpmcm9tIHJhbmRvbSBpbXBvcnQgcmFuZHJhbmdlDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBDT05GSUdVUkFUSU9OIC0tLS0tLS0tLS0tLS0tLS0NCkxBUkdFVVIgPSA1MDANCkhBVVRFVVIgPSA1MDANClRBSUxMRSA9IDEwDQpUQUlMTEVfUE9NTUUgPSA4DQpWSVRFU1NFID0gODANCg0KQ09VTEVVUl9GT05EID0gIiMyYjJiMmIiDQpDT1VMRVVSX1RFVEUgPSAiIzAwYzg1MyINCkNPVUxFVVJfQ09SUFMgPSAiIzU1ZWZjNCINCkNPVUxFVVJfUE9NTUUgPSAiI2ZiODUwMCINCkNPVUxFVVJfTVVSID0gIiM4ZDk5YWUiDQpDT1VMRVVSX1RFWFRFID0gIiNmMWZhZWUiDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBQT1NJVElPTiBERSBERVBBUlQgLS0tLS0tLS0tLS0tLS0tLQ0KUE9TSVRJT05fREVQQVJUID0gW1syNTAsIDI1MF0sIFsyNDAsIDI1MF0sIFsyMzAsIDI1MF1dDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBWQVJJQUJMRVMgLS0tLS0tLS0tLS0tLS0tLQ0KZGlyZWN0aW9uID0gImhhdXQiDQpqZXVfYWN0aWYgPSBGYWxzZQ0Kc2NvcmUgPSAwDQpTZXJwZW50ID0gW10NCnBYID0gMA0KcFkgPSAwDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBNVVJTIC0tLS0tLS0tLS0tLS0tLS0NCm11cnMgPSBbXQ0KDQpmb3IgeCBpbiByYW5nZSgxMDAsIDQwMCwgVEFJTExFKToNCiAgICBtdXJzLmFwcGVuZChbeCwgMTIwXSkNCiAgICBtdXJzLmFwcGVuZChbeCwgMzYwXSkNCg0KZm9yIHkgaW4gcmFuZ2UoMTYwLCAzMjAsIFRBSUxMRSk6DQogICAgbXVycy5hcHBlbmQoWzE1MCwgeV0pDQogICAgbXVycy5hcHBlbmQoWzM1MCwgeV0pDQoNCiMgLS0tLS0tLS0tLS0tLS0tLSBGT05DVElPTlMgLS0tLS0tLS0tLS0tLS0tLQ0KZGVmIGluaXRpYWxpc2VyX2pldSgpOg0KICAgICIiIlLDqWluaXRpYWxpc2F0aW9uIGNvbXBsw6h0ZSBkdSBqZXUiIiINCiAgICBnbG9iYWwgU2VycGVudCwgZGlyZWN0aW9uLCBzY29yZSwgcFgsIHBZLCBqZXVfYWN0aWYNCg0KICAgIFNlcnBlbnQgPSBbc2VnbWVudFs6XSBmb3Igc2VnbWVudCBpbiBQT1NJVElPTl9ERVBBUlRdDQogICAgZGlyZWN0aW9uID0gImhhdXQiDQogICAgc2NvcmUgPSAwDQogICAgamV1X2FjdGlmID0gVHJ1ZQ0KDQogICAgcGxhY2VyX3BvbW1lKCkNCiAgICBkZXNzaW5lcigpDQoNCmRlZiBwbGFjZXJfcG9tbWUoKToNCiAgICBnbG9iYWwgcFgsIHBZDQogICAgd2hpbGUgVHJ1ZToNCiAgICAgICAgcFggPSByYW5kcmFuZ2UoMjAsIExBUkdFVVIgLSAyMCwgVEFJTExFKQ0KICAgICAgICBwWSA9IHJhbmRyYW5nZSgyMCwgSEFVVEVVUiAtIDIwLCBUQUlMTEUpDQogICAgICAgIGlmIFtwWCwgcFldIG5vdCBpbiBtdXJzIGFuZCBbcFgsIHBZXSBub3QgaW4gU2VycGVudDoNCiAgICAgICAgICAgIGJyZWFrDQoNCmRlZiBsYW5jZXJfamV1KCk6DQogICAgaWYgbm90IGpldV9hY3RpZjoNCiAgICAgICAgaW5pdGlhbGlzZXJfamV1KCkNCiAgICAgICAgZGVwbGFjZXJfc2VycGVudCgpDQoNCmRlZiBmaW5fZGVfcGFydGllKCk6DQogICAgZ2xvYmFsIGpldV9hY3RpZg0KICAgIGpldV9hY3RpZiA9IEZhbHNlDQoNCiAgICBjYW4uY3JlYXRlX3RleHQoDQogICAgICAgIExBUkdFVVIgLy8gMiwNCiAgICAgICAgSEFVVEVVUiAvLyAyLA0KICAgICAgICB0ZXh0PWYiR0FNRSBPVkVSXG5TY29yZSA6IHtzY29yZX0iLA0KICAgICAgICBmaWxsPSIjZmY1OTVlIiwNCiAgICAgICAgZm9udD0oIkFyaWFsIiwgMjQsICJib2xkIiksDQogICAgICAgIGp1c3RpZnk9ImNlbnRlciINCiAgICApDQoNCmRlZiBkZXBsYWNlcl9zZXJwZW50KCk6DQogICAgZ2xvYmFsIHNjb3JlDQoNCiAgICBpZiBub3QgamV1X2FjdGlmOg0KICAgICAgICByZXR1cm4NCg0KICAgICMgRMOpcGxhY2VtZW50IGR1IGNvcnBzDQogICAgZm9yIGkgaW4gcmFuZ2UobGVuKFNlcnBlbnQpIC0gMSwgMCwgLTEpOg0KICAgICAgICBTZXJwZW50W2ldID0gU2VycGVudFtpIC0gMV1bOl0NCg0KICAgICMgRMOpcGxhY2VtZW50IGRlIGxhIHTDqnRlDQogICAgaWYgZGlyZWN0aW9uID09ICJnYXVjaGUiOg0KICAgICAgICBTZXJwZW50WzBdWzBdIC09IFRBSUxMRQ0KICAgIGVsaWYgZGlyZWN0aW9uID09ICJkcm9pdGUiOg0KICAgICAgICBTZXJwZW50WzBdWzBdICs9IFRBSUxMRQ0KICAgIGVsaWYgZGlyZWN0aW9uID09ICJoYXV0IjoNCiAgICAgICAgU2VycGVudFswXVsxXSAtPSBUQUlMTEUNCiAgICBlbGlmIGRpcmVjdGlvbiA9PSAiYmFzIjoNCiAgICAgICAgU2VycGVudFswXVsxXSArPSBUQUlMTEUNCg0KICAgICMgQ29sbGlzaW9uIGF2ZWMgbGVzIGJvcmRzDQogICAgaWYgKA0KICAgICAgICBTZXJwZW50WzBdWzBdIDwgMCBvciBTZXJwZW50WzBdWzBdID49IExBUkdFVVIgb3INCiAgICAgICAgU2VycGVudFswXVsxXSA8IDAgb3IgU2VycGVudFswXVsxXSA+PSBIQVVURVVSDQogICAgKToNCiAgICAgICAgZmluX2RlX3BhcnRpZSgpDQogICAgICAgIHJldHVybg0KDQogICAgIyBDb2xsaXNpb24gYXZlYyBsZXMgbXVycw0KICAgIGlmIFNlcnBlbnRbMF0gaW4gbXVyczoNCiAgICAgICAgZmluX2RlX3BhcnRpZSgpDQogICAgICAgIHJldHVybg0KDQogICAgIyBDb2xsaXNpb24gYXZlYyBsYSBwb21tZQ0KICAgIGlmIGFicyhTZXJwZW50WzBdWzBdIC0gcFgpIDwgVEFJTExFIGFuZCBhYnMoU2VycGVudFswXVsxXSAtIHBZKSA8IFRBSUxMRToNCiAgICAgICAgU2VycGVudC5hcHBlbmQoU2VycGVudFstMV1bOl0pDQogICAgICAgIHNjb3JlICs9IDENCiAgICAgICAgcGxhY2VyX3BvbW1lKCkNCg0KICAgIGRlc3NpbmVyKCkNCiAgICBmZW4uYWZ0ZXIoVklURVNTRSwgZGVwbGFjZXJfc2VycGVudCkNCg0KZGVmIGRlc3NpbmVyKCk6DQogICAgY2FuLmRlbGV0ZSgiYWxsIikNCg0KICAgICMgU2NvcmUNCiAgICBjYW4uY3JlYXRlX3RleHQoDQogICAgICAgIDcwLCAxNSwNCiAgICAgICAgdGV4dD1mIlNjb3JlIDoge3Njb3JlfSIsDQogICAgICAgIGZpbGw9Q09VTEVVUl9URVhURSwNCiAgICAgICAgZm9udD0oIkFyaWFsIiwgMTIsICJib2xkIikNCiAgICApDQoNCiAgICAjIFBvbW1lDQogICAgY2FuLmNyZWF0ZV9vdmFsKA0KICAgICAgICBwWCwgcFksDQogICAgICAgIHBYICsgVEFJTExFX1BPTU1FLCBwWSArIFRBSUxMRV9QT01NRSwNCiAgICAgICAgZmlsbD1DT1VMRVVSX1BPTU1FLA0KICAgICAgICBvdXRsaW5lPSIiDQogICAgKQ0KDQogICAgIyBNdXJzDQogICAgZm9yIG11ciBpbiBtdXJzOg0KICAgICAgICBjYW4uY3JlYXRlX3JlY3RhbmdsZSgNCiAgICAgICAgICAgIG11clswXSwgbXVyWzFdLA0KICAgICAgICAgICAgbXVyWzBdICsgVEFJTExFLCBtdXJbMV0gKyBUQUlMTEUsDQogICAgICAgICAgICBmaWxsPUNPVUxFVVJfTVVSLA0KICAgICAgICAgICAgb3V0bGluZT0iIg0KICAgICAgICApDQoNCiAgICAjIFNlcnBlbnQNCiAgICBmb3Igc2VnbWVudCBpbiBTZXJwZW50WzE6XToNCiAgICAgICAgY2FuLmNyZWF0ZV9yZWN0YW5nbGUoDQogICAgICAgICAgICBzZWdtZW50WzBdLCBzZWdtZW50WzFdLA0KICAgICAgICAgICAgc2VnbWVudFswXSArIFRBSUxMRSwgc2VnbWVudFsxXSArIFRBSUxMRSwNCiAgICAgICAgICAgIGZpbGw9Q09VTEVVUl9DT1JQUywNCiAgICAgICAgICAgIG91dGxpbmU9IiINCiAgICAgICAgKQ0KDQogICAgIyBUw6p0ZQ0KICAgIGNhbi5jcmVhdGVfcmVjdGFuZ2xlKA0KICAgICAgICBTZXJwZW50WzBdWzBdLCBTZXJwZW50WzBdWzFdLA0KICAgICAgICBTZXJwZW50WzBdWzBdICsgVEFJTExFLCBTZXJwZW50WzBdWzFdICsgVEFJTExFLA0KICAgICAgICBmaWxsPUNPVUxFVVJfVEVURSwNCiAgICAgICAgb3V0bGluZT0iIg0KICAgICkNCg0KIyAtLS0tLS0tLS0tLS0tLS0tIENPTlRST0xFUyAtLS0tLS0tLS0tLS0tLS0tDQpkZWYgZ2F1Y2hlKGV2ZW50KToNCiAgICBnbG9iYWwgZGlyZWN0aW9uDQogICAgaWYgZGlyZWN0aW9uICE9ICJkcm9pdGUiOg0KICAgICAgICBkaXJlY3Rpb24gPSAiZ2F1Y2hlIg0KDQpkZWYgZHJvaXRlKGV2ZW50KToNCiAgICBnbG9iYWwgZGlyZWN0aW9uDQogICAgaWYgZGlyZWN0aW9uICE9ICJnYXVjaGUiOg0KICAgICAgICBkaXJlY3Rpb24gPSAiZHJvaXRlIg0KDQpkZWYgaGF1dChldmVudCk6DQogICAgZ2xvYmFsIGRpcmVjdGlvbg0KICAgIGlmIGRpcmVjdGlvbiAhPSAiYmFzIjoNCiAgICAgICAgZGlyZWN0aW9uID0gImhhdXQiDQoNCmRlZiBiYXMoZXZlbnQpOg0KICAgIGdsb2JhbCBkaXJlY3Rpb24NCiAgICBpZiBkaXJlY3Rpb24gIT0gImhhdXQiOg0KICAgICAgICBkaXJlY3Rpb24gPSAiYmFzIg0KDQojIC0tLS0tLS0tLS0tLS0tLS0gSU5URVJGQUNFIC0tLS0tLS0tLS0tLS0tLS0NCmZlbiA9IFRrKCkNCmZlbi50aXRsZSgi8J+QjSBKZXUgZHUgU2VycGVudCIpDQoNCmNhbiA9IENhbnZhcyhmZW4sIHdpZHRoPUxBUkdFVVIsIGhlaWdodD1IQVVURVVSLCBiZz1DT1VMRVVSX0ZPTkQpDQpjYW4ucGFjayhwYWR4PTEwLCBwYWR5PTEwKQ0KDQpMYWJlbCgNCiAgICBmZW4sDQogICAgdGV4dD0iQ29udHLDtGxlcyA6IFogUSBTIEQgfCDDiXZpdGV6IGxlcyBtdXJzIHwgTWFuZ2V6IGxlcyBwb2ludHMiLA0KICAgIGZnPUNPVUxFVVJfQ09SUFMsDQogICAgYmc9Q09VTEVVUl9GT05EDQopLnBhY2socGFkeT01KQ0KDQpGcmFtZV9ib3V0b25zID0gRnJhbWUoZmVuLCBiZz1DT1VMRVVSX0ZPTkQpDQpGcmFtZV9ib3V0b25zLnBhY2socGFkeT01KQ0KDQpCdXR0b24oDQogICAgRnJhbWVfYm91dG9ucywNCiAgICB0ZXh0PSLilrYgRMOpbWFycmVyIGxhIHBhcnRpZSIsDQogICAgY29tbWFuZD1sYW5jZXJfamV1LA0KICAgIGJnPSIjMWYxZjFmIiwNCiAgICBmZz1DT1VMRVVSX0NPUlBTLA0KICAgIHdpZHRoPTE4DQopLnBhY2soc2lkZT1MRUZULCBwYWR4PTUpDQoNCkJ1dHRvbigNCiAgICBGcmFtZV9ib3V0b25zLA0KICAgIHRleHQ9IuKdjCBRdWl0dGVyIGxlIGpldSIsDQogICAgY29tbWFuZD1mZW4uZGVzdHJveSwNCiAgICBiZz0iIzFmMWYxZiIsDQogICAgZmc9IiNmZjc2NzUiLA0KICAgIHdpZHRoPTE1DQopLnBhY2soc2lkZT1SSUdIVCwgcGFkeD01KQ0KDQpmZW4uYmluZCgiPHE+IiwgZ2F1Y2hlKQ0KZmVuLmJpbmQoIjxkPiIsIGRyb2l0ZSkNCmZlbi5iaW5kKCI8ej4iLCBoYXV0KQ0KZmVuLmJpbmQoIjxzPiIsIGJhcykNCg0KZmVuLm1haW5sb29wKCkNCg==";
+var _MB64 = "aW1wb3J0IHRraW50ZXIgYXMgdGsNCmZyb20gcmFuZG9tIGltcG9ydCBzYW1wbGUNCg0KY2xhc3MgTWFzdGVybWluZEFwcDoNCiAgICBkZWYgX19pbml0X18oc2VsZiwgcm9vdCk6DQogICAgICAgIHNlbGYucm9vdCA9IHJvb3QNCiAgICAgICAgc2VsZi5yb290LnRpdGxlKCJNYXN0ZXJtaW5kIikNCiAgICAgICAgc2VsZi5jb3VsZXVycyA9IFsiamF1bmUiLCAiYmxldSIsICJyb3VnZSIsICJ2ZXJ0IiwgImJsYW5jIiwgIm5vaXIiXQ0KICAgICAgICBzZWxmLmNvdWxldXJzX2hleCA9IHsNCiAgICAgICAgICAgICJqYXVuZSI6ICIjRkZGRjAwIiwNCiAgICAgICAgICAgICJibGV1IjogIiMwMDAwRkYiLA0KICAgICAgICAgICAgInJvdWdlIjogIiNGRjAwMDAiLA0KICAgICAgICAgICAgInZlcnQiOiAiIzAwRkYwMCIsDQogICAgICAgICAgICAiYmxhbmMiOiAiI0ZGRkZGRiIsDQogICAgICAgICAgICAibm9pciI6ICIjMDAwMDAwIg0KICAgICAgICB9DQoNCiAgICAgICAgIyBJbml0aWFsaXNlciBsYSBjb21iaW5haXNvbiBzZWNyw6h0ZQ0KICAgICAgICBzZWxmLmNvdWxldXJzX2FfZGV2aW5lciA9IHNlbGYuZ2VuZXJlcl9jb3VsZXVycygpDQogICAgICAgIHNlbGYudGVudGF0aXZlcyA9IDEwDQogICAgICAgIHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGUgPSBbXQ0KDQogICAgICAgICMgSW50ZXJmYWNlIHNldHVwDQogICAgICAgIHNlbGYubGFiZWxfaW5zdHJ1Y3Rpb24gPSB0ay5MYWJlbChyb290LCB0ZXh0PSJDbGlxdWV6IHN1ciBsZXMgY291bGV1cnMgcG91ciBkZXZpbmVyIGxhIGNvbWJpbmFpc29uIDoiKQ0KICAgICAgICBzZWxmLmxhYmVsX2luc3RydWN0aW9uLnBhY2socGFkeT0xMCkNCg0KICAgICAgICBzZWxmLmZyYW1lX2NvdWxldXJzID0gdGsuRnJhbWUocm9vdCkNCiAgICAgICAgc2VsZi5mcmFtZV9jb3VsZXVycy5wYWNrKHBhZHk9MTApDQoNCiAgICAgICAgIyBCb3V0b25zIGRlIHPDqWxlY3Rpb24gZGUgY291bGV1cnMNCiAgICAgICAgZm9yIGNvdWxldXIgaW4gc2VsZi5jb3VsZXVyczoNCiAgICAgICAgICAgIGJvdXRvbiA9IHRrLkJ1dHRvbihzZWxmLmZyYW1lX2NvdWxldXJzLCBiZz1zZWxmLmNvdWxldXJzX2hleFtjb3VsZXVyXSwgd2lkdGg9NSwgaGVpZ2h0PTIsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29tbWFuZD1sYW1iZGEgY291bGV1cj1jb3VsZXVyOiBzZWxmLmFqb3V0ZXJfY291bGV1cihjb3VsZXVyKSkNCiAgICAgICAgICAgIGJvdXRvbi5ncmlkKHJvdz0wLCBjb2x1bW49c2VsZi5jb3VsZXVycy5pbmRleChjb3VsZXVyKSwgcGFkeD01KQ0KDQogICAgICAgICMgQWZmaWNoYWdlIGRlIGxhIGNvbWJpbmFpc29uIGVuIGNvdXJzDQogICAgICAgIHNlbGYuZnJhbWVfY29tYmluYWlzb24gPSB0ay5GcmFtZShyb290KQ0KICAgICAgICBzZWxmLmZyYW1lX2NvbWJpbmFpc29uLnBhY2socGFkeT0xMCkNCiAgICAgICAgc2VsZi5jb21iaW5haXNvbl9sYWJlbHMgPSBbdGsuTGFiZWwoc2VsZi5mcmFtZV9jb21iaW5haXNvbiwgYmc9ImdyZXkiLCB3aWR0aD01LCBoZWlnaHQ9MikgZm9yIF8gaW4gcmFuZ2UoNCldDQogICAgICAgIGZvciBpLCBsYWJlbCBpbiBlbnVtZXJhdGUoc2VsZi5jb21iaW5haXNvbl9sYWJlbHMpOg0KICAgICAgICAgICAgbGFiZWwuZ3JpZChyb3c9MCwgY29sdW1uPWksIHBhZHg9NSkNCg0KICAgICAgICBzZWxmLmJ1dHRvbl92YWxpZGVyID0gdGsuQnV0dG9uKHJvb3QsIHRleHQ9IlZhbGlkZXIgbGEgdGVudGF0aXZlIiwgY29tbWFuZD1zZWxmLnZhbGlkZXJfdGVudGF0aXZlLCBzdGF0ZT10ay5ESVNBQkxFRCkNCiAgICAgICAgc2VsZi5idXR0b25fdmFsaWRlci5wYWNrKHBhZHk9MTApDQoNCiAgICAgICAgIyBBZmZpY2hhZ2UgZGVzIHRlbnRhdGl2ZXMNCiAgICAgICAgc2VsZi5mcmFtZV90ZW50YXRpdmVzID0gdGsuRnJhbWUocm9vdCkNCiAgICAgICAgc2VsZi5mcmFtZV90ZW50YXRpdmVzLnBhY2socGFkeT0xMCkNCg0KICAgICAgICAjIEFmZmljaGVyIGxlcyB0ZW50YXRpdmVzIHByw6ljw6lkZW50ZXMNCiAgICAgICAgc2VsZi50ZW50YXRpdmVzX2xhYmVscyA9IFtdDQogICAgICAgIGZvciBfIGluIHJhbmdlKDEwKToNCiAgICAgICAgICAgIGxpZ25lID0gW3RrLkxhYmVsKHNlbGYuZnJhbWVfdGVudGF0aXZlcywgYmc9ImdyZXkiLCB3aWR0aD01LCBoZWlnaHQ9MikgZm9yIF8gaW4gcmFuZ2UoNCldDQogICAgICAgICAgICBmb3IgaSwgbGFiZWwgaW4gZW51bWVyYXRlKGxpZ25lKToNCiAgICAgICAgICAgICAgICBsYWJlbC5ncmlkKHJvdz1sZW4oc2VsZi50ZW50YXRpdmVzX2xhYmVscyksIGNvbHVtbj1pLCBwYWR4PTUpDQogICAgICAgICAgICBzZWxmLnRlbnRhdGl2ZXNfbGFiZWxzLmFwcGVuZChsaWduZSkNCiAgICAgICAgICAgIHRrLkxhYmVsKHNlbGYuZnJhbWVfdGVudGF0aXZlcywgdGV4dD0iIikuZ3JpZChyb3c9bGVuKHNlbGYudGVudGF0aXZlc19sYWJlbHMpLTEsIGNvbHVtbj00LCBwYWR4PTUpDQoNCiAgICAgICAgIyBMYWJlbCBwb3VyIGFmZmljaGVyIGxlIHLDqXN1bHRhdCBkZSBsYSB0ZW50YXRpdmUNCiAgICAgICAgc2VsZi5sYWJlbF9yZXN1bHRhdCA9IHRrLkxhYmVsKHJvb3QsIHRleHQ9IiIpDQogICAgICAgIHNlbGYubGFiZWxfcmVzdWx0YXQucGFjayhwYWR5PTEwKQ0KDQogICAgICAgICMgQm91dG9uICJRdWl0dGVyIiBwb3VyIGZlcm1lciBsJ2FwcGxpY2F0aW9uDQogICAgICAgIHNlbGYuYnV0dG9uX3F1aXR0ZXIgPSB0ay5CdXR0b24ocm9vdCwgdGV4dD0iUXVpdHRlciIsIGNvbW1hbmQ9c2VsZi5yb290LmRlc3Ryb3kpDQogICAgICAgIHNlbGYuYnV0dG9uX3F1aXR0ZXIucGFjayhwYWR5PTEwKQ0KDQogICAgZGVmIGdlbmVyZXJfY291bGV1cnMoc2VsZik6DQogICAgICAgIHJldHVybiBzYW1wbGUoc2VsZi5jb3VsZXVycywgNCkNCg0KICAgIGRlZiBham91dGVyX2NvdWxldXIoc2VsZiwgY291bGV1cik6DQogICAgICAgICIiIkFqb3V0ZSB1bmUgY291bGV1ciDDoCBsYSBjb21iaW5haXNvbiBlbiBjb3Vycy4iIiINCiAgICAgICAgaWYgbGVuKHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGUpIDwgNDoNCiAgICAgICAgICAgIHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGUuYXBwZW5kKGNvdWxldXIpDQogICAgICAgICAgICBzZWxmLmNvbWJpbmFpc29uX2xhYmVsc1tsZW4oc2VsZi5jb21iaW5haXNvbl9hY3R1ZWxsZSktMV0uY29uZmlnKGJnPXNlbGYuY291bGV1cnNfaGV4W2NvdWxldXJdKQ0KICAgICAgICAgICAgaWYgbGVuKHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGUpID09IDQ6DQogICAgICAgICAgICAgICAgc2VsZi5idXR0b25fdmFsaWRlci5jb25maWcoc3RhdGU9dGsuTk9STUFMKQ0KDQogICAgZGVmIHJlc3VsdGF0KHNlbGYsIGRldmluZXIpOg0KICAgICAgICAiIiJSZXRvdXJuZSBsZSBub21icmUgZGUgYm9ubmVzIGNvdWxldXJzIGV0IGRlIGNvdWxldXJzIGJpZW4gcGxhY8OpZXMuIiIiDQogICAgICAgIGJpZW5fcGxhY2VzID0gMA0KICAgICAgICBib25uZXNfY291bGV1cnMgPSAwDQogICAgICAgIHRlbXBfY291bGV1cnNfYV9kZXZpbmVyID0gc2VsZi5jb3VsZXVyc19hX2RldmluZXIuY29weSgpDQoNCiAgICAgICAgZm9yIGkgaW4gcmFuZ2UoNCk6DQogICAgICAgICAgICBpZiBkZXZpbmVyW2ldID09IHNlbGYuY291bGV1cnNfYV9kZXZpbmVyW2ldOg0KICAgICAgICAgICAgICAgIGJpZW5fcGxhY2VzICs9IDENCg0KICAgICAgICBmb3IgY291bGV1ciBpbiBkZXZpbmVyOg0KICAgICAgICAgICAgaWYgY291bGV1ciBpbiB0ZW1wX2NvdWxldXJzX2FfZGV2aW5lcjoNCiAgICAgICAgICAgICAgICBib25uZXNfY291bGV1cnMgKz0gMQ0KICAgICAgICAgICAgICAgIHRlbXBfY291bGV1cnNfYV9kZXZpbmVyLnJlbW92ZShjb3VsZXVyKQ0KDQogICAgICAgIHJldHVybiBib25uZXNfY291bGV1cnMsIGJpZW5fcGxhY2VzDQoNCiAgICBkZWYgdmFsaWRlcl90ZW50YXRpdmUoc2VsZik6DQogICAgICAgICIiIlZhbGlkZSBsYSBjb21iaW5haXNvbiBhY3R1ZWxsZS4iIiINCiAgICAgICAgZGV2aW5lciA9IHNlbGYuY29tYmluYWlzb25fYWN0dWVsbGVbOl0NCiAgICAgICAgYm9ubmVzX2NvdWxldXJzLCBiaWVuX3BsYWNlcyA9IHNlbGYucmVzdWx0YXQoZGV2aW5lcikNCg0KICAgICAgICAjIE1ldCDDoCBqb3VyIGwnYWZmaWNoYWdlIGRlIGxhIHRlbnRhdGl2ZQ0KICAgICAgICBmb3IgaSBpbiByYW5nZSg0KToNCiAgICAgICAgICAgIHNlbGYudGVudGF0aXZlc19sYWJlbHNbMTAgLSBzZWxmLnRlbnRhdGl2ZXNdW2ldLmNvbmZpZyhiZz1zZWxmLmNvdWxldXJzX2hleFtkZXZpbmVyW2ldXSkNCg0KICAgICAgICAjIEFmZmljaGUgbGUgcsOpc3VsdGF0IGRlIGxhIHRlbnRhdGl2ZQ0KICAgICAgICBzZWxmLmxhYmVsX3Jlc3VsdGF0LmNvbmZpZygNCiAgICAgICAgICAgIHRleHQ9ZiJUZW50YXRpdmUgezExIC0gc2VsZi50ZW50YXRpdmVzfS8xMCA6IHtib25uZXNfY291bGV1cnN9IGNvdWxldXIocykgY29ycmVjdGUocyksIHtiaWVuX3BsYWNlc30gYmllbiBwbGFjw6llKHMpLiINCiAgICAgICAgKQ0KDQogICAgICAgIGlmIGJpZW5fcGxhY2VzID09IDQ6DQogICAgICAgICAgICBzZWxmLmxhYmVsX3Jlc3VsdGF0LmNvbmZpZyh0ZXh0PSJGw6lsaWNpdGF0aW9ucyAhIFZvdXMgYXZleiBkZXZpbsOpIGxhIGNvbWJpbmFpc29uIHNlY3LDqHRlLiIpDQogICAgICAgICAgICBzZWxmLmJ1dHRvbl92YWxpZGVyLmNvbmZpZyhzdGF0ZT10ay5ESVNBQkxFRCkNCiAgICAgICAgICAgIHJldHVybg0KDQogICAgICAgIHNlbGYudGVudGF0aXZlcyAtPSAxDQogICAgICAgIGlmIHNlbGYudGVudGF0aXZlcyA9PSAwOg0KICAgICAgICAgICAgc2VsZi5sYWJlbF9yZXN1bHRhdC5jb25maWcodGV4dD0iVm91cyBhdmV6IHBlcmR1ICEgTGEgY29tYmluYWlzb24gw6l0YWl0IDogIiArICIgIi5qb2luKHNlbGYuY291bGV1cnNfYV9kZXZpbmVyKSkNCiAgICAgICAgICAgIHNlbGYuYnV0dG9uX3ZhbGlkZXIuY29uZmlnKHN0YXRlPXRrLkRJU0FCTEVEKQ0KDQogICAgICAgICMgUsOpaW5pdGlhbGlzZSBwb3VyIGxhIHByb2NoYWluZSB0ZW50YXRpdmUNCiAgICAgICAgc2VsZi5jb21iaW5haXNvbl9hY3R1ZWxsZSA9IFtdDQogICAgICAgIGZvciBsYWJlbCBpbiBzZWxmLmNvbWJpbmFpc29uX2xhYmVsczoNCiAgICAgICAgICAgIGxhYmVsLmNvbmZpZyhiZz0iZ3JleSIpDQogICAgICAgIHNlbGYuYnV0dG9uX3ZhbGlkZXIuY29uZmlnKHN0YXRlPXRrLkRJU0FCTEVEKQ0KDQojIENyw6llciBldCBsYW5jZXIgbCdhcHBsaWNhdGlvbg0Kcm9vdCA9IHRrLlRrKCkNCmFwcCA9IE1hc3Rlcm1pbmRBcHAocm9vdCkNCnJvb3QubWFpbmxvb3AoKQ0K";
+
+function _b64decode(b) {
+  try { return decodeURIComponent(escape(atob(b))); } catch(e) { return atob(b); }
+}
+
+function openModal(key) {
+  var overlay = document.getElementById('modal-overlay');
+  if (!overlay) return;
+  ['mc-mastermind','mc-serpent','mc-todolist','mc-aryaslist'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  var content = document.getElementById('mc-' + key);
+  if (!content) return;
+  content.style.display = 'flex';
+
+  if (key === 'serpent') {
+    var dl = document.getElementById('dl-serpent');
+    if (dl && !dl.dataset.set) {
+      var blob = new Blob([_b64decode(_SB64)], {type:'text/plain'});
+      dl.href = URL.createObjectURL(blob);
+      dl.dataset.set = '1';
+    }
+    initSnake();
+  }
+  if (key === 'mastermind') {
+    var dl2 = document.getElementById('dl-mastermind');
+    if (dl2 && !dl2.dataset.set) {
+      var blob2 = new Blob([_b64decode(_MB64)], {type:'text/plain'});
+      dl2.href = URL.createObjectURL(blob2);
+      dl2.dataset.set = '1';
+    }
+    mmNewGame();
+  }
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeModal(); stopSnake(); } });
+
+// ═══════════════════════════════
+//  SNAKE GAME
+// ═══════════════════════════════
+var snakeState = null;
+
+function initSnake() {
+  var overlay = document.getElementById('snake-overlay');
+  if (overlay) overlay.style.display = 'flex';
+  document.getElementById('snake-score').textContent = '0';
+  var title = document.getElementById('snake-overlay-title');
+  var sub = document.getElementById('snake-overlay-sub');
+  if (title) title.textContent = 'SNAKE';
+  if (sub) sub.textContent = 'APPUIE SUR JOUER POUR DÉMARRER';
+}
+
+function startSnake() {
+  var canvas = document.getElementById('snake-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var overlay = document.getElementById('snake-overlay');
+  if (overlay) overlay.style.display = 'none';
+
+  var GRID = 20; var COLS = 20; var ROWS = 20;
+  var snake = [{x:10,y:10},{x:9,y:10},{x:8,y:10}];
+  var dir = {x:1,y:0}; var nextDir = {x:1,y:0};
+  var food = spawnFood(snake, COLS, ROWS);
+  var score = 0; var speed = 120;
+  var running = true;
+
+  snakeState = { running: true };
+
+  function spawnFood(s, C, R) {
+    var f; do { f = {x:Math.floor(Math.random()*C), y:Math.floor(Math.random()*R)}; }
+    while (s.some(function(seg){return seg.x===f.x&&seg.y===f.y;}));
+    return f;
+  }
+
+  // Murs comme dans le Python original
+  var walls = [];
+  for (var wx=5;wx<15;wx++) { walls.push({x:wx,y:6}); walls.push({x:wx,y:18}); }
+  for (var wy=8;wy<16;wy++) { walls.push({x:7,y:wy}); walls.push({x:17,y:wy}); }
+
+  function isWall(px,py) { return walls.some(function(w){return w.x===px&&w.y===py;}); }
+
+  function spawnFoodSafe(s,C,R) {
+    var f; var tries=0;
+    do { f={x:Math.floor(Math.random()*C),y:Math.floor(Math.random()*R)}; tries++; }
+    while ((s.some(function(seg){return seg.x===f.x&&seg.y===f.y;}) || isWall(f.x,f.y)) && tries<200);
+    return f;
+  }
+  food = spawnFoodSafe(snake, COLS, ROWS);
+
+  function draw() {
+    ctx.fillStyle = '#2b2b2b'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    // walls
+    ctx.fillStyle = '#8d99ae';
+    walls.forEach(function(w){ ctx.fillRect(w.x*GRID, w.y*GRID, GRID, GRID); });
+    // food — cercle orange
+    ctx.fillStyle = '#fb8500';
+    ctx.beginPath(); ctx.arc(food.x*GRID+GRID/2, food.y*GRID+GRID/2, GRID/2-2, 0, Math.PI*2); ctx.fill();
+    // snake body
+    ctx.fillStyle = '#55efc4';
+    for (var k=1;k<snake.length;k++) {
+      ctx.fillRect(snake[k].x*GRID, snake[k].y*GRID, GRID-1, GRID-1);
+    }
+    // snake head
+    ctx.fillStyle = '#00c853';
+    ctx.fillRect(snake[0].x*GRID, snake[0].y*GRID, GRID-1, GRID-1);
+    document.getElementById('snake-score').textContent = score;
+  }
+
+  function gameLoop() {
+    if (!running || !snakeState || !snakeState.running) return;
+    if (snakeState._nextDir) {
+      var nd = snakeState._nextDir;
+      if (!(nd.x===-dir.x&&nd.y===0) && !(nd.y===-dir.y&&nd.x===0)) {
+        nextDir = nd;
+      }
+      snakeState._nextDir = null;
+    }
+    dir = nextDir;
+    var head = {x: snake[0].x+dir.x, y: snake[0].y+dir.y};
+    // wall collision (bords + murs internes)
+    if (head.x<0||head.x>=COLS||head.y<0||head.y>=ROWS) { gameOver(); return; }
+    if (isWall(head.x,head.y)) { gameOver(); return; }
+    // self collision
+    if (snake.some(function(s){return s.x===head.x&&s.y===head.y;})) { gameOver(); return; }
+    snake.unshift(head);
+    if (head.x===food.x && head.y===food.y) {
+      score++; food = spawnFoodSafe(snake,COLS,ROWS);
+      if (speed > 60) speed = Math.max(60, speed - 3);
+    } else { snake.pop(); }
+    draw();
+    setTimeout(gameLoop, speed);
+  }
+
+  function gameOver() {
+    running = false;
+    var ov = document.getElementById('snake-overlay');
+    var title = document.getElementById('snake-overlay-title');
+    var sub = document.getElementById('snake-overlay-sub');
+    if (title) title.textContent = 'GAME OVER';
+    if (sub) sub.textContent = 'SCORE : ' + score;
+    if (ov) ov.style.display = 'flex';
+  }
+
+  var keyMap = {
+    'ArrowUp':{x:0,y:-1},'ArrowDown':{x:0,y:1},'ArrowLeft':{x:-1,y:0},'ArrowRight':{x:1,y:0},
+    'z':{x:0,y:-1},'s':{x:0,y:1},'q':{x:-1,y:0},'d':{x:1,y:0},
+    'Z':{x:0,y:-1},'S':{x:0,y:1},'Q':{x:-1,y:0},'D':{x:1,y:0}
+  };
+
+  function onKey(e) {
+    var d = keyMap[e.key];
+    if (d && !(d.x===-dir.x&&d.y===0) && !(d.y===-dir.y&&d.x===0)) {
+      nextDir = d; e.preventDefault();
+    }
+  }
+  document.addEventListener('keydown', onKey);
+  snakeState._cleanup = function() { document.removeEventListener('keydown', onKey); running = false; };
+
+  draw(); gameLoop();
+}
+
+function stopSnake() {
+  if (snakeState) { snakeState.running = false; if (snakeState._cleanup) snakeState._cleanup(); snakeState = null; }
+  var overlay = document.getElementById('snake-overlay');
+  if (overlay) overlay.style.display = 'flex';
+}
+
+function snakeTouchDir(dx, dy) {
+  if (!snakeState) return;
+  snakeState._nextDir = {x: dx, y: dy};
+}
+
+// Show touch controls on mobile
+(function() {
+  var tc = document.getElementById('touch-controls');
+  if (tc && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+    tc.style.display = 'grid';
+  }
+})();
+
+// ═══════════════════════════════
+//  MASTERMIND GAME
+// ═══════════════════════════════
+var MM = {
+  colors: ['#FFFF00','#0066FF','#FF0000','#00CC00','#FFFFFF','#222222'],
+  names:  ['Jaune','Bleu','Rouge','Vert','Blanc','Noir'],
+  secret: [], attempts: [], current: [], maxTries: 10, gameOver: false
+};
+
+function mmNewGame() {
+  MM.secret = []; MM.attempts = []; MM.current = []; MM.gameOver = false;
+  var pool = [0,1,2,3,4,5]; 
+  while (MM.secret.length < 4) {
+    var idx = Math.floor(Math.random()*pool.length);
+    MM.secret.push(pool[idx]); pool.splice(idx,1);
+  }
+  mmRender();
+}
+
+function mmRender() {
+  var board = document.getElementById('mm-board');
+  var slots = document.getElementById('mm-current-slots');
+  var palette = document.getElementById('mm-color-palette');
+  var btn = document.getElementById('mm-validate-btn');
+  var status = document.getElementById('mm-status');
+  if (!board) return;
+
+  // Board rows (past attempts)
+  board.innerHTML = '';
+  for (var i = MM.maxTries-1; i >= 0; i--) {
+    var row = document.createElement('div');
+    row.className = 'mm-row';
+    var num = document.createElement('div');
+    num.className = 'mm-row-num';
+    num.textContent = (i+1);
+    row.appendChild(num);
+    var pegsDiv = document.createElement('div');
+    pegsDiv.className = 'mm-pegs';
+    var attempt = MM.attempts[i];
+    for (var j=0;j<4;j++) {
+      var peg = document.createElement('div');
+      peg.className = 'mm-peg';
+      if (attempt) { peg.style.background = MM.colors[attempt.guess[j]]; peg.style.borderColor = 'rgba(255,255,255,0.3)'; }
+      pegsDiv.appendChild(peg);
+    }
+    row.appendChild(pegsDiv);
+    var fbDiv = document.createElement('div');
+    fbDiv.className = 'mm-feedback';
+    if (attempt) {
+      for (var f=0;f<attempt.wellPlaced;f++) { var fp=document.createElement('div'); fp.className='mm-fb-peg'; fp.style.background='#e8162a'; fbDiv.appendChild(fp); }
+      for (var g=0;g<(attempt.correct-attempt.wellPlaced);g++) { var gp=document.createElement('div'); gp.className='mm-fb-peg'; gp.style.background='#fff'; fbDiv.appendChild(gp); }
+      for (var h=0;h<(4-attempt.correct);h++) { var hp=document.createElement('div'); hp.className='mm-fb-peg'; fbDiv.appendChild(hp); }
+      // texte feedback comme dans le Python original
+      var fbText=document.createElement('div');
+      fbText.style.cssText='font-family:Share Tech Mono,monospace;font-size:9px;color:rgba(255,255,255,0.5);margin-top:3px;letter-spacing:0.5px;white-space:nowrap;';
+      fbText.textContent=attempt.correct+' correcte(s), '+attempt.wellPlaced+' bien placée(s)';
+      row.appendChild(fbText);
+    }
+    row.appendChild(fbDiv);
+    if (i === MM.attempts.length && !MM.gameOver) row.classList.add('mm-current-row');
+    board.appendChild(row);
+  }
+
+  // Current slots
+  slots.innerHTML = '';
+  for (var s=0;s<4;s++) {
+    var slot = document.createElement('div');
+    slot.className = 'mm-slot' + (s < MM.current.length ? ' filled' : '');
+    if (s < MM.current.length) slot.style.background = MM.colors[MM.current[s]];
+    slots.appendChild(slot);
+  }
+
+  // Color palette
+  palette.innerHTML = '';
+  MM.colors.forEach(function(col, idx) {
+    var btn2 = document.createElement('div');
+    btn2.className = 'mm-color-btn';
+    btn2.style.background = col;
+    if (col === '#222222') btn2.style.border = '3px solid rgba(255,255,255,0.3)';
+    btn2.onclick = function() { mmPickColor(idx); };
+    palette.appendChild(btn2);
+  });
+
+  btn.disabled = MM.current.length < 4 || MM.gameOver;
+  if (status) status.textContent = MM.gameOver ? '' : ('TENTATIVE ' + (MM.attempts.length+1) + ' / ' + MM.maxTries);
+}
+
+function mmPickColor(idx) {
+  if (MM.current.length >= 4 || MM.gameOver) return;
+  MM.current.push(idx); mmRender();
+}
+
+function mmErase() {
+  if (MM.current.length > 0 && !MM.gameOver) { MM.current.pop(); mmRender(); }
+}
+
+function mmValidate() {
+  if (MM.current.length < 4 || MM.gameOver) return;
+  var guess = MM.current.slice();
+  var wellPlaced = 0, correct = 0;
+  var secretCopy = MM.secret.slice();
+  for (var i=0;i<4;i++) { if (guess[i]===MM.secret[i]) wellPlaced++; }
+  for (var j=0;j<4;j++) {
+    var idx2 = secretCopy.indexOf(guess[j]);
+    if (idx2 !== -1) { correct++; secretCopy.splice(idx2,1); }
+  }
+  MM.attempts.push({guess:guess, wellPlaced:wellPlaced, correct:correct});
+  MM.current = [];
+  var status = document.getElementById('mm-status');
+  if (wellPlaced === 4) {
+    MM.gameOver = true;
+    if (status) status.textContent = '🎉 GAGNÉ EN ' + MM.attempts.length + ' ESSAI(S) !';
+    status.style.color = '#4ade80';
+  } else if (MM.attempts.length >= MM.maxTries) {
+    MM.gameOver = true;
+    var secNames = MM.secret.map(function(i){ return '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:'+MM.colors[i]+';vertical-align:middle;margin:0 2px;border:1px solid rgba(255,255,255,0.3)"></span>'; }).join('');
+    if (status) { status.innerHTML = '❌ PERDU ! LA RÉPONSE : ' + secNames; status.style.color = '#e8162a'; }
+  }
+  mmRender();
+}
+
+</script>
+
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this){closeModal();stopSnake();}">
+  <div class="modal-box" id="modal-box">
+
+    <!-- SNAKE MODAL -->
+    <div id="mc-serpent" style="display:none;flex-direction:column;height:100%;max-height:88vh;">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-icon">🐍</span>
+          <div>
+            <div class="modal-title">Jeu du Serpent</div>
+            <div class="modal-subtitle">// PYTHON → JS · PROJET PERSONNEL · 09/2025 – 10/2025</div>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeModal();stopSnake()">✕</button>
+      </div>
+      <div class="modal-actions">
+        <a id="dl-serpent" href="#" download="serpent.py" class="modal-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:15px;height:15px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          TÉLÉCHARGER LE CODE PYTHON
+        </a>
+        <span class="modal-file-info">serpent.py · Python / tkinter</span>
+      </div>
+      <div class="game-wrap">
+        <div class="game-score">SCORE : <span id="snake-score">0</span></div>
+        <div class="game-canvas-wrap">
+          <canvas id="snake-canvas" width="400" height="400"></canvas>
+          <div class="game-overlay" id="snake-overlay">
+            <div class="game-overlay-title" id="snake-overlay-title">SNAKE</div>
+            <div class="game-overlay-sub" id="snake-overlay-sub">APPUIE SUR JOUER POUR DÉMARRER</div>
+            <button class="game-btn" onclick="startSnake()">▶ JOUER</button>
+          </div>
+        </div>
+        <div class="game-controls">↑ ↓ ← → OU Z Q S D POUR DIRIGER</div>
+      <div class="touch-controls" style="display:none;" id="touch-controls">
+        <div></div>
+        <div class="touch-btn" ontouchstart="snakeTouchDir(0,-1)">↑</div>
+        <div></div>
+        <div class="touch-btn" ontouchstart="snakeTouchDir(-1,0)">←</div>
+        <div class="touch-btn" ontouchstart="snakeTouchDir(0,1)">↓</div>
+        <div class="touch-btn" ontouchstart="snakeTouchDir(1,0)">→</div>
+      </div>
+      </div>
+    </div>
+
+
+    <!-- MASTERMIND MODAL -->
+    <div id="mc-mastermind" style="display:none;flex-direction:column;height:100%;max-height:88vh;">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-icon">🧠</span>
+          <div>
+            <div class="modal-title">Mastermind</div>
+            <div class="modal-subtitle">// PYTHON → JS · PROJET PERSONNEL · 11/2025 – 03/2026</div>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-actions">
+        <a id="dl-mastermind" href="#" download="mastermind.py" class="modal-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:15px;height:15px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          TÉLÉCHARGER LE CODE PYTHON
+        </a>
+        <span class="modal-file-info">mastermind.py · Python / tkinter</span>
+      </div>
+      <div class="game-wrap" id="mm-wrap">
+        <div class="mm-label">TROUVE LA COMBINAISON SECRÈTE EN 10 ESSAIS</div>
+        <div class="mm-game-area">
+          <div>
+            <div class="mm-board" id="mm-board"></div>
+          </div>
+          <div class="mm-side">
+            <div class="mm-label">TA PROPOSITION</div>
+            <div class="mm-pegs" id="mm-current-slots"></div>
+            <div class="mm-label" style="margin-top:8px;">COULEURS</div>
+            <div class="mm-colors" id="mm-color-palette"></div>
+            <button class="mm-validate" id="mm-validate-btn" onclick="mmValidate()" disabled>VALIDER</button>
+            <button class="mm-erase" onclick="mmErase()">⌫ EFFACER</button>
+            <div class="mm-label" id="mm-status" style="color:#ffd60a;font-size:11px;margin-top:4px;"></div>
+          </div>
+        </div>
+        <button class="game-btn secondary" onclick="mmNewGame()" style="margin-top:4px;font-size:13px;">↺ NOUVELLE PARTIE</button>
+      </div>
+    </div>
+
+
+    <!-- TODOLIST -->
+    <div id="mc-todolist" style="display:none;flex-direction:column;">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-icon">📋</span>
+          <div><div class="modal-title">Todolist</div>
+          <div class="modal-subtitle">// GITHUB · OPEN-SOURCE · @Akshit95820</div></div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-gh-body">
+        <div style="font-size:48px;">🐙</div>
+        <div style="font-family:'Bangers',cursive;font-size:32px;letter-spacing:2px;color:#fff;">github.com/Akshit95820</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;max-width:460px;text-align:center;">Application de gestion de tâches disponible en open-source. Structuration complète d'un projet et publication sur GitHub.</p>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:13px;color:#00d4ff;border:1px solid rgba(0,212,255,0.3);padding:10px 18px;letter-spacing:1px;">github.com/Akshit95820/todolist</div>
+        <a href="https://github.com/Akshit95820/todolist" target="_blank" class="modal-download" style="text-decoration:none;margin-top:8px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:15px;height:15px;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          OUVRIR SUR GITHUB
+        </a>
+      </div>
+    </div>
+    <!-- ARYASLIST -->
+    <div id="mc-aryaslist" style="display:none;flex-direction:column;">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-icon">📂</span>
+          <div><div class="modal-title">AryasList</div>
+          <div class="modal-subtitle">// GITHUB · DONNÉES · @Akshit95820</div></div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-gh-body">
+        <div style="font-size:48px;">🐙</div>
+        <div style="font-family:'Bangers',cursive;font-size:32px;letter-spacing:2px;color:#fff;">github.com/Akshit95820</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;max-width:460px;text-align:center;">Projet de liste publié sur GitHub. Exploration de la gestion de données, de l'organisation du code et du versionnement avec Git.</p>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:13px;color:#00d4ff;border:1px solid rgba(0,212,255,0.3);padding:10px 18px;letter-spacing:1px;">github.com/Akshit95820/AryasList</div>
+        <a href="https://github.com/Akshit95820/AryasList" target="_blank" class="modal-download" style="text-decoration:none;margin-top:8px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentCol
